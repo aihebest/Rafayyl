@@ -1776,6 +1776,208 @@
     }
   }
 
+
+  /* ==========================================================
+     CARD ROTATION — SERVICES & INDUSTRIES
+     ========================================================== */
+
+  /* ── Fix reveal-stagger for services & industries (opacity only) ── */
+  .services-grid.reveal-stagger > *,
+  .industries-grid.reveal-stagger > * {
+    opacity: 0;
+    transform: none !important;
+    transition: opacity 0.8s var(--ease-out) !important;
+  }
+  .services-grid.reveal-stagger.in > *,
+  .industries-grid.reveal-stagger.in > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── Service cards — 3D tilt + rotating glow ── */
+  .service-card {
+    animation: card3DTilt 6s ease-in-out infinite,
+               glowRotate  6s linear     infinite;
+    transform-style: preserve-3d;
+  }
+  .service-card:nth-child(2) { animation: card3DTiltAlt 6s ease-in-out -1s infinite,   glowRotateAlt 6s linear -1s infinite; }
+  .service-card:nth-child(3) { animation: card3DTilt    6s ease-in-out -2s infinite,   glowRotate    6s linear -2s infinite; }
+  .service-card:nth-child(4) { animation: card3DTiltAlt 6s ease-in-out -3s infinite,   glowRotateAlt 6s linear -3s infinite; }
+  .service-card:nth-child(5) { animation: card3DTilt    6s ease-in-out -4s infinite,   glowRotate    6s linear -4s infinite; }
+  .service-card:nth-child(6) { animation: card3DTiltAlt 6s ease-in-out -5s infinite,   glowRotateAlt 6s linear -5s infinite; }
+
+  /* Service icons — 360° spin */
+  .service-card .ico {
+    animation: iconSpin360 5s ease-in-out infinite;
+  }
+  .service-card:nth-child(2) .ico { animation-delay: -.83s; }
+  .service-card:nth-child(3) .ico { animation-delay: -1.66s; }
+  .service-card:nth-child(4) .ico { animation-delay: -2.5s;  }
+  .service-card:nth-child(5) .ico { animation-delay: -3.33s; }
+  .service-card:nth-child(6) .ico { animation-delay: -4.16s; }
+
+  /* Hover: pause card tilt, keep premium lift */
+  .service-card:hover {
+    animation-play-state: paused;
+    transform: translateY(-8px) !important;
+    border-color: rgba(201,168,76,.45);
+    box-shadow: 0 20px 40px rgba(201,168,76,.3);
+  }
+  .service-card:hover .ico {
+    animation: none;
+    transform: rotate(-6deg) scale(1.05);
+    background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+    color: var(--navy-900);
+  }
+
+  /* ── Industry cards — opposite tilt + alt glow ── */
+  .industry-card {
+    animation: card3DTiltAlt 7s ease-in-out infinite,
+               glowRotateAlt 7s linear     infinite;
+    transform-style: preserve-3d;
+  }
+  .industry-card:nth-child(2) { animation: card3DTilt    7s ease-in-out -1.16s infinite, glowRotate    7s linear -1.16s infinite; }
+  .industry-card:nth-child(3) { animation: card3DTiltAlt 7s ease-in-out -2.33s infinite, glowRotateAlt 7s linear -2.33s infinite; }
+  .industry-card:nth-child(4) { animation: card3DTilt    7s ease-in-out -3.5s  infinite, glowRotate    7s linear -3.5s  infinite; }
+  .industry-card:nth-child(5) { animation: card3DTiltAlt 7s ease-in-out -4.66s infinite, glowRotateAlt 7s linear -4.66s infinite; }
+  .industry-card:nth-child(6) { animation: card3DTilt    7s ease-in-out -5.83s infinite, glowRotate    7s linear -5.83s infinite; }
+  .industry-card:nth-child(7) { animation: card3DTiltAlt 7s ease-in-out -1s    infinite, glowRotateAlt 7s linear -1s    infinite; }
+  .industry-card:nth-child(8) { animation: card3DTilt    7s ease-in-out -2s    infinite, glowRotate    7s linear -2s    infinite; }
+
+  /* Industry icons — 360° spin */
+  .industry-card .icon {
+    animation: iconSpin360 6s ease-in-out infinite;
+  }
+  .industry-card:nth-child(2) .icon { animation-delay: -1s;   }
+  .industry-card:nth-child(3) .icon { animation-delay: -2s;   }
+  .industry-card:nth-child(4) .icon { animation-delay: -3s;   }
+  .industry-card:nth-child(5) .icon { animation-delay: -4s;   }
+  .industry-card:nth-child(6) .icon { animation-delay: -5s;   }
+  .industry-card:nth-child(7) .icon { animation-delay: -1.5s; }
+  .industry-card:nth-child(8) .icon { animation-delay: -2.5s; }
+
+  /* Hover: pause, lift */
+  .industry-card:hover {
+    animation-play-state: paused;
+    transform: translateY(-6px) !important;
+    border-color: var(--glass-border-strong);
+    box-shadow: 0 16px 36px rgba(201,168,76,.25);
+  }
+  .industry-card:hover .icon {
+    animation-play-state: paused;
+    transform: scale(1.1) rotate(-5deg);
+  }
+
+  /* Reduced motion override */
+  @media (prefers-reduced-motion: reduce) {
+    .service-card, .industry-card,
+    .service-card .ico, .industry-card .icon {
+      animation: none !important;
+      transform: none !important;
+    }
+  }
+
+
+  /* ==========================================================
+     CARD ROTATION — SERVICES & INDUSTRIES
+     ========================================================== */
+
+  /* ── Fix reveal-stagger for services & industries (opacity only) ── */
+  .services-grid.reveal-stagger > *,
+  .industries-grid.reveal-stagger > * {
+    opacity: 0;
+    transform: none !important;
+    transition: opacity 0.8s var(--ease-out) !important;
+  }
+  .services-grid.reveal-stagger.in > *,
+  .industries-grid.reveal-stagger.in > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── Service cards — 3D tilt + rotating glow ── */
+  .service-card {
+    animation: card3DTilt 6s ease-in-out infinite,
+               glowRotate  6s linear     infinite;
+    transform-style: preserve-3d;
+  }
+  .service-card:nth-child(2) { animation: card3DTiltAlt 6s ease-in-out -1s infinite,   glowRotateAlt 6s linear -1s infinite; }
+  .service-card:nth-child(3) { animation: card3DTilt    6s ease-in-out -2s infinite,   glowRotate    6s linear -2s infinite; }
+  .service-card:nth-child(4) { animation: card3DTiltAlt 6s ease-in-out -3s infinite,   glowRotateAlt 6s linear -3s infinite; }
+  .service-card:nth-child(5) { animation: card3DTilt    6s ease-in-out -4s infinite,   glowRotate    6s linear -4s infinite; }
+  .service-card:nth-child(6) { animation: card3DTiltAlt 6s ease-in-out -5s infinite,   glowRotateAlt 6s linear -5s infinite; }
+
+  /* Service icons — 360° spin */
+  .service-card .ico {
+    animation: iconSpin360 5s ease-in-out infinite;
+  }
+  .service-card:nth-child(2) .ico { animation-delay: -.83s; }
+  .service-card:nth-child(3) .ico { animation-delay: -1.66s; }
+  .service-card:nth-child(4) .ico { animation-delay: -2.5s;  }
+  .service-card:nth-child(5) .ico { animation-delay: -3.33s; }
+  .service-card:nth-child(6) .ico { animation-delay: -4.16s; }
+
+  /* Hover: pause card tilt, keep premium lift */
+  .service-card:hover {
+    animation-play-state: paused;
+    transform: translateY(-8px) !important;
+    border-color: rgba(201,168,76,.45);
+    box-shadow: 0 20px 40px rgba(201,168,76,.3);
+  }
+  .service-card:hover .ico {
+    animation: none;
+    transform: rotate(-6deg) scale(1.05);
+    background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+    color: var(--navy-900);
+  }
+
+  /* ── Industry cards — opposite tilt + alt glow ── */
+  .industry-card {
+    animation: card3DTiltAlt 7s ease-in-out infinite,
+               glowRotateAlt 7s linear     infinite;
+    transform-style: preserve-3d;
+  }
+  .industry-card:nth-child(2) { animation: card3DTilt    7s ease-in-out -1.16s infinite, glowRotate    7s linear -1.16s infinite; }
+  .industry-card:nth-child(3) { animation: card3DTiltAlt 7s ease-in-out -2.33s infinite, glowRotateAlt 7s linear -2.33s infinite; }
+  .industry-card:nth-child(4) { animation: card3DTilt    7s ease-in-out -3.5s  infinite, glowRotate    7s linear -3.5s  infinite; }
+  .industry-card:nth-child(5) { animation: card3DTiltAlt 7s ease-in-out -4.66s infinite, glowRotateAlt 7s linear -4.66s infinite; }
+  .industry-card:nth-child(6) { animation: card3DTilt    7s ease-in-out -5.83s infinite, glowRotate    7s linear -5.83s infinite; }
+  .industry-card:nth-child(7) { animation: card3DTiltAlt 7s ease-in-out -1s    infinite, glowRotateAlt 7s linear -1s    infinite; }
+  .industry-card:nth-child(8) { animation: card3DTilt    7s ease-in-out -2s    infinite, glowRotate    7s linear -2s    infinite; }
+
+  /* Industry icons — 360° spin */
+  .industry-card .icon {
+    animation: iconSpin360 6s ease-in-out infinite;
+  }
+  .industry-card:nth-child(2) .icon { animation-delay: -1s;   }
+  .industry-card:nth-child(3) .icon { animation-delay: -2s;   }
+  .industry-card:nth-child(4) .icon { animation-delay: -3s;   }
+  .industry-card:nth-child(5) .icon { animation-delay: -4s;   }
+  .industry-card:nth-child(6) .icon { animation-delay: -5s;   }
+  .industry-card:nth-child(7) .icon { animation-delay: -1.5s; }
+  .industry-card:nth-child(8) .icon { animation-delay: -2.5s; }
+
+  /* Hover: pause, lift */
+  .industry-card:hover {
+    animation-play-state: paused;
+    transform: translateY(-6px) !important;
+    border-color: var(--glass-border-strong);
+    box-shadow: 0 16px 36px rgba(201,168,76,.25);
+  }
+  .industry-card:hover .icon {
+    animation-play-state: paused;
+    transform: scale(1.1) rotate(-5deg);
+  }
+
+  /* Reduced motion override */
+  @media (prefers-reduced-motion: reduce) {
+    .service-card, .industry-card,
+    .service-card .ico, .industry-card .icon {
+      animation: none !important;
+      transform: none !important;
+    }
+  }
+
 </style>
 </head>
 <body>
