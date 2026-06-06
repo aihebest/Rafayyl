@@ -4,69 +4,28 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
-
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
-  # ── Preview deploy on pull requests ──────────────────────────────────────
-  preview:
-    name: Preview Deploy
+  deploy:
+    name: Trigger Vercel Production Deploy
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Vercel CLI
-        run: npm install -g vercel@latest
-
-      - name: Pull Vercel environment
-        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Deploy preview
-        id: preview
+      - name: Trigger Vercel deploy hook
         run: |
-          url=$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }})
-          echo "preview_url=$url" >> $GITHUB_OUTPUT
+          curl -s -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}" \
+            -H "Content-Type: application/json" \
+            | python3 -c "import sys,json; r=json.load(sys.stdin); print('✅ Deploy triggered — job ID:', r.get('job',{}).get('id','n/a'))"
 
-      - name: Comment preview URL on PR
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `🚀 **Preview deployed!**\n\n🔗 ${{ steps.preview.outputs.preview_url }}\n\n_Rafayyl Engineering · Preview Build_`
-            })
-
-  # ── Production deploy on push to main ────────────────────────────────────
-  production:
-    name: Production Deploy
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install Vercel CLI
-        run: npm install -g vercel@latest
-
-      - name: Pull Vercel environment
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Deploy to production
-        run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Notify success
-        if: success()
-        run: echo "✅ Production deployment complete → https://rafayyl.com"
-
-      - name: Notify failure
-        if: failure()
-        run: echo "❌ Deployment failed. Check logs above."
+      - name: Wait and verify site is live
+        run: |
+          echo "⏳ Waiting 30s for deployment to complete..."
+          sleep 30
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://rafayyl.com)
+          if [ "$STATUS" = "200" ]; then
+            echo "✅ https://rafayyl.com is live (HTTP $STATUS)"
+          else
+            echo "⚠️  Site returned HTTP $STATUS — deployment may still be in progress"
+          fi
