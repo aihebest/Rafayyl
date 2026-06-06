@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 132" role="img" xml:lang="en">
+  <title>Rafayyl Engineering and Construction Limited</title>
+  <desc>Official primary logo of Rafayyl Engineering and Construction Limited. Gold building mark with white wordmark on transparent background.</desc>
+  <defs>
+    <linearGradient id="badgeGrad" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#1E365F"/>
+      <stop offset="100%" stop-color="#050B16"/>
+    </linearGradient>
+    <linearGradient id="goldLine" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" x1="134" x2="662">
+      <stop offset="0%" stop-color="#C9A84C"/>
+      <stop offset="50%" stop-color="#E6CB80"/>
+      <stop offset="100%" stop-color="#C9A84C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ── Mark badge ────────────────────────────────── -->
+  <rect x="8" y="10" width="108" height="108" rx="20" fill="url(#badgeGrad)" stroke="#C9A84C" stroke-width="1.5"/>
+
+  <!-- Building mark — gold lines on navy -->
+  <!-- Ground base -->
+  <line x1="22" y1="105" x2="102" y2="105" stroke="#C9A84C" stroke-width="2.8" stroke-linecap="round"/>
+  <!-- Left structural column -->
+  <line x1="30" y1="105" x2="30" y2="66" stroke="#D4B764" stroke-width="2.8" stroke-linecap="round"/>
+  <!-- Right structural column -->
+  <line x1="94" y1="105" x2="94" y2="66" stroke="#D4B764" stroke-width="2.8" stroke-linecap="round"/>
+  <!-- Gabled roof -->
+  <polyline points="28,66 62,33 96,66" fill="none" stroke="#E6CB80" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Floor datum 1 -->
+  <line x1="40" y1="80" x2="84" y2="80" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Floor datum 2 -->
+  <line x1="40" y1="93" x2="84" y2="93" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Apex gem -->
+  <circle cx="62" cy="33" r="4" fill="#E6CB80"/>
+  <circle cx="62" cy="33" r="2" fill="#0A1628"/>
+  <!-- Outer side rails -->
+  <line x1="18" y1="72" x2="18" y2="105" stroke="#7C6526" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <line x1="106" y1="72" x2="106" y2="105" stroke="#7C6526" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- ── Wordmark ──────────────────────────────────── -->
+  <text x="136" y="77"
+    font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+    font-size="54" font-weight="700" fill="#FFFFFF" letter-spacing="4">RAFAYYL</text>
+
+  <!-- Gold rule -->
+  <line x1="136" y1="84" x2="666" y2="84" stroke="#C9A84C" stroke-width="0.8" opacity="0.65"/>
+
+  <!-- Descriptor -->
+  <text x="137" y="100"
+    font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+    font-size="11.5" font-weight="600" fill="#C9A84C" letter-spacing="5">ENGINEERING  ·  CONSTRUCTION  LIMITED</text>
+
+  <!-- CAC tag -->
+  <text x="138" y="116"
+    font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+    font-size="9" font-weight="400" fill="#7C6526" letter-spacing="2.5">CAC RC 7451347  ·  NIGERIA</text>
+</svg>
