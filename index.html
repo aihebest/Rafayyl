@@ -1400,6 +1400,239 @@
     *,*::before,*::after{animation:none!important;transition:none!important;}
     .reveal,.reveal-stagger>*{opacity:1!important;transform:none!important;}
   }
+
+  /* ==========================================================
+     KEY DIVISIONS
+     ========================================================== */
+  .divisions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .division-card{
+    padding:34px 28px;border-radius:var(--radius-lg);
+    background:var(--glass-bg);border:1px solid var(--glass-border);
+    backdrop-filter:blur(14px);position:relative;overflow:hidden;
+    transition:transform .4s var(--ease-out),border-color .4s var(--ease-out),background .4s var(--ease-out);
+  }
+  .division-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,transparent,var(--gold-500),transparent);
+    transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out);
+  }
+  .division-card:hover{transform:translateY(-6px);border-color:var(--glass-border-strong);background:var(--glass-bg-strong);}
+  .division-card:hover::before{transform:scaleX(1);}
+  .division-card .div-num{
+    position:absolute;top:20px;right:22px;
+    font-family:'Playfair Display',serif;font-size:52px;font-weight:700;
+    color:rgba(201,168,76,.1);line-height:1;
+  }
+  .division-card .div-ico{
+    width:58px;height:58px;border-radius:16px;display:grid;place-items:center;
+    background:linear-gradient(135deg,rgba(201,168,76,.16),rgba(201,168,76,.04));
+    border:1px solid rgba(201,168,76,.28);color:var(--gold-400);
+    margin-bottom:20px;
+    transition:transform .4s var(--ease-spring),background .4s;
+  }
+  .division-card:hover .div-ico{
+    transform:rotate(-6deg) scale(1.08);
+    background:linear-gradient(135deg,var(--gold-500),var(--gold-600));color:var(--navy-900);
+  }
+  .division-card .div-ico svg{width:26px;height:26px;}
+  .division-card h3{font-size:1.3rem;margin-bottom:10px;}
+  .division-card p{font-size:13.5px;color:var(--mute);margin-bottom:18px;}
+  .div-tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .div-tag{
+    font-size:10px;letter-spacing:.12em;font-weight:600;padding:4px 10px;
+    border-radius:999px;background:rgba(201,168,76,.08);
+    border:1px solid rgba(201,168,76,.2);color:var(--gold-500);
+  }
+  @media(max-width:900px){.divisions-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.divisions-grid{grid-template-columns:1fr;}}
+
+  /* ==========================================================
+     OUR PROCESS
+     ========================================================== */
+  .process-wrap{position:relative;}
+  .process-line{
+    position:absolute;top:52px;left:calc(100%/12);right:calc(100%/12);
+    height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold-600) 15%,var(--gold-500) 50%,var(--gold-600) 85%,transparent);
+    opacity:.45;
+    z-index:0;
+  }
+  .process-steps{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:16px;
+    position:relative;z-index:1;
+  }
+  .process-step{text-align:center;padding:0 8px;}
+  .process-step .p-num{
+    width:52px;height:52px;border-radius:50%;margin:0 auto 20px;
+    background:linear-gradient(135deg,var(--gold-500),var(--gold-700));
+    display:grid;place-items:center;
+    font-family:'Playfair Display',serif;font-size:18px;font-weight:700;
+    color:var(--navy-900);
+    box-shadow:0 8px 22px rgba(201,168,76,.35);
+    transition:transform .4s var(--ease-spring),box-shadow .4s;
+    position:relative;z-index:2;
+  }
+  .process-step:hover .p-num{transform:scale(1.12);box-shadow:0 12px 30px rgba(201,168,76,.5);}
+  .process-step h4{font-size:.95rem;margin-bottom:8px;color:var(--white);}
+  .process-step p{font-size:12.5px;color:var(--mute);margin:0;line-height:1.55;}
+  @media(max-width:960px){
+    .process-steps{grid-template-columns:repeat(3,1fr);gap:28px;}
+    .process-line{display:none;}
+  }
+  @media(max-width:540px){.process-steps{grid-template-columns:repeat(2,1fr);}}
+
+  /* ==========================================================
+     COMPANY VALUES
+     ========================================================== */
+  .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .value-card{
+    padding:34px 28px;border-radius:var(--radius-lg);
+    background:var(--glass-bg);border:1px solid var(--glass-border);
+    backdrop-filter:blur(14px);
+    display:flex;gap:22px;align-items:flex-start;
+    transition:transform .4s var(--ease-out),border-color .4s var(--ease-out);
+    position:relative;overflow:hidden;
+  }
+  .value-card::after{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:linear-gradient(180deg,var(--gold-500),transparent);
+    transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease-out);
+  }
+  .value-card:hover{transform:translateY(-5px);border-color:var(--glass-border-strong);}
+  .value-card:hover::after{transform:scaleY(1);}
+  .value-card .v-ico{
+    flex:none;width:54px;height:54px;border-radius:14px;display:grid;place-items:center;
+    background:rgba(201,168,76,.12);color:var(--gold-400);border:1px solid rgba(201,168,76,.22);
+    transition:background .3s,color .3s;
+  }
+  .value-card:hover .v-ico{background:rgba(201,168,76,.22);color:var(--gold-300);}
+  .value-card .v-ico svg{width:26px;height:26px;}
+  .value-card h4{font-size:1.15rem;margin-bottom:8px;}
+  .value-card p{font-size:13.5px;color:var(--mute);margin:0;line-height:1.6;}
+  @media(max-width:900px){.values-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:540px){.values-grid{grid-template-columns:1fr;}}
+
+
+  /* ==========================================================
+     ROTATION & FLOAT ANIMATIONS
+     ========================================================== */
+
+  /* Slow continuous rotation for process numbers */
+  @keyframes spinGold {
+    0%   { transform: rotate(0deg)   scale(1);    box-shadow: 0 8px 22px rgba(201,168,76,.35); }
+    25%  { transform: rotate(90deg)  scale(1.05); box-shadow: 0 12px 32px rgba(201,168,76,.55); }
+    50%  { transform: rotate(180deg) scale(1);    box-shadow: 0 8px 22px rgba(201,168,76,.35); }
+    75%  { transform: rotate(270deg) scale(1.05); box-shadow: 0 12px 32px rgba(201,168,76,.55); }
+    100% { transform: rotate(360deg) scale(1);    box-shadow: 0 8px 22px rgba(201,168,76,.35); }
+  }
+
+  /* Gentle float + tilt for division & value icons */
+  @keyframes floatIcon {
+    0%,100% { transform: translateY(0)   rotate(0deg); }
+    25%      { transform: translateY(-5px) rotate(4deg); }
+    50%      { transform: translateY(-8px) rotate(0deg); }
+    75%      { transform: translateY(-4px) rotate(-4deg); }
+  }
+
+  /* Oscillating rotation for value icons */
+  @keyframes swingIcon {
+    0%,100% { transform: rotate(-8deg); }
+    50%      { transform: rotate(8deg);  }
+  }
+
+  /* Rotating dashed ring (decorative, process section bg) */
+  @keyframes ringRotate {
+    from { transform: translate(-50%,-50%) rotate(0deg); }
+    to   { transform: translate(-50%,-50%) rotate(360deg); }
+  }
+  @keyframes ringRotateReverse {
+    from { transform: translate(-50%,-50%) rotate(0deg); }
+    to   { transform: translate(-50%,-50%) rotate(-360deg); }
+  }
+
+  /* Shimmer sweep on process numbers */
+  @keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position:  200% center; }
+  }
+
+  /* ── Apply to process numbers ── */
+  .process-step .p-num {
+    animation: spinGold 12s linear infinite;
+    background: linear-gradient(135deg, var(--gold-300), var(--gold-500), var(--gold-700), var(--gold-500), var(--gold-300));
+    background-size: 200% auto;
+  }
+  /* Pause on hover so user can read */
+  .process-step:hover .p-num { animation-play-state: paused; transform: scale(1.14) !important; }
+
+  /* ── Stagger each process number spin start ── */
+  .process-steps > :nth-child(1) .p-num { animation-delay: 0s; }
+  .process-steps > :nth-child(2) .p-num { animation-delay: -2s; }
+  .process-steps > :nth-child(3) .p-num { animation-delay: -4s; }
+  .process-steps > :nth-child(4) .p-num { animation-delay: -6s; }
+  .process-steps > :nth-child(5) .p-num { animation-delay: -8s; }
+  .process-steps > :nth-child(6) .p-num { animation-delay: -10s; }
+
+  /* ── Float division icons ── */
+  .division-card .div-ico {
+    animation: floatIcon 6s ease-in-out infinite;
+  }
+  .division-card:nth-child(2) .div-ico { animation-delay: -1s; }
+  .division-card:nth-child(3) .div-ico { animation-delay: -2s; }
+  .division-card:nth-child(4) .div-ico { animation-delay: -3s; }
+  .division-card:nth-child(5) .div-ico { animation-delay: -4s; }
+  .division-card:nth-child(6) .div-ico { animation-delay: -5s; }
+  /* Hover overrides animation */
+  .division-card:hover .div-ico {
+    animation: none;
+    transform: rotate(-6deg) scale(1.08);
+    background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+    color: var(--navy-900);
+  }
+
+  /* ── Swing value icons ── */
+  .value-card .v-ico {
+    animation: swingIcon 4s ease-in-out infinite;
+    transform-origin: center bottom;
+  }
+  .value-card:nth-child(2) .v-ico { animation-delay: -.66s; }
+  .value-card:nth-child(3) .v-ico { animation-delay: -1.33s; }
+  .value-card:nth-child(4) .v-ico { animation-delay: -2s; }
+  .value-card:nth-child(5) .v-ico { animation-delay: -2.66s; }
+  .value-card:nth-child(6) .v-ico { animation-delay: -3.33s; }
+  .value-card:hover .v-ico { animation-play-state: paused; }
+
+  /* ── Rotating decorative rings (process section bg) ── */
+  .process-wrap::before,
+  .process-wrap::after {
+    content: "";
+    position: absolute;
+    top: 52px; left: 50%;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .process-wrap::before {
+    width: 220px; height: 220px;
+    margin-top: -84px;
+    border: 1px dashed rgba(201,168,76,.22);
+    animation: ringRotate 18s linear infinite;
+  }
+  .process-wrap::after {
+    width: 320px; height: 320px;
+    margin-top: -134px;
+    border: 1px dashed rgba(201,168,76,.12);
+    animation: ringRotateReverse 28s linear infinite;
+  }
+
+  /* Respect reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .p-num, .div-ico, .v-ico,
+    .process-wrap::before, .process-wrap::after {
+      animation: none !important;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -1428,7 +1661,6 @@
     <a class="nav-link" href="#about" role="menuitem">About</a>
     <a class="nav-link" href="#services" role="menuitem">Services</a>
     <a class="nav-link" href="#projects" role="menuitem">Projects</a>
-    <a class="nav-link" href="#team" role="menuitem">Team</a>
     <a class="nav-link" href="#news" role="menuitem">Insights</a>
     <a class="nav-link" href="#careers" role="menuitem">Careers</a>
     <a class="nav-link" href="#contact" role="menuitem">Contact</a>
@@ -1980,83 +2212,234 @@
   </div>
 </section>
 
+
 <!-- =========================================================
-     LEADERSHIP TEAM — NEW
+     KEY DIVISIONS — NEW
      ========================================================= -->
-<section class="section" id="team" aria-labelledby="team-title">
+<section class="section" id="divisions" aria-labelledby="divisions-title" style="padding-bottom:60px;">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Our Leadership</span>
-      <h2 class="section-title" id="team-title">The minds behind <br/>every project.</h2>
-      <p class="section-sub">Seasoned engineers, visionary leaders — united by a commitment to engineering excellence and Nigerian development.</p>
+      <span class="eyebrow">Our Divisions</span>
+      <h2 class="section-title" id="divisions-title">Six specialised divisions.<br/>One integrated team.</h2>
+      <p class="section-sub">Each division is led by senior engineers with deep sector experience — working together as a single accountable delivery unit.</p>
     </div>
-    <div class="team-grid reveal-stagger">
-      <div class="team-card">
-        <div class="team-avatar" aria-hidden="true">OB</div>
-        <h3 class="team-name">Olumide Bello</h3>
-        <div class="team-role">Chief Executive Officer</div>
-        <p class="team-bio">20+ years in civil and structural engineering across West Africa. COREN-registered professional engineer with 20+ years across civil and structural projects in West Africa.</p>
-        <div class="team-socials" aria-label="Olumide Bello social links">
-          <a href="https://www.linkedin.com/in/" class="team-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-          </a>
+    <div class="divisions-grid reveal-stagger">
+
+      <div class="division-card">
+        <span class="div-num" aria-hidden="true">01</span>
+        <div class="div-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22h20"/><path d="M3 22V8l9-6 9 6v14"/><path d="M9 22V12h6v10"/></svg>
+        </div>
+        <h3>Civil Engineering</h3>
+        <p>Structural design, geotechnical analysis, and turnkey civil works for all sectors.</p>
+        <div class="div-tags">
+          <span class="div-tag">Structural Design</span>
+          <span class="div-tag">Geotechnical</span>
+          <span class="div-tag">Turnkey Build</span>
         </div>
       </div>
-      <div class="team-card">
-        <div class="team-avatar" aria-hidden="true">AO</div>
-        <h3 class="team-name">Amara Okonkwo</h3>
-        <div class="team-role">Chief Operating Officer</div>
-        <p class="team-bio">Expert in construction program management and multi-project delivery. B.Eng Civil Engineering · MBA · PMP certified. Expert in multi-site delivery across West Africa.</p>
-        <div class="team-socials" aria-label="Amara Okonkwo social links">
-          <a href="https://www.linkedin.com/in/" class="team-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-          </a>
+
+      <div class="division-card">
+        <span class="div-num" aria-hidden="true">02</span>
+        <div class="div-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M9 14h6"/><path d="M9 17h3"/></svg>
+        </div>
+        <h3>Construction Management</h3>
+        <p>Full programme management across complex multi-trade construction projects.</p>
+        <div class="div-tags">
+          <span class="div-tag">Programme Mgmt</span>
+          <span class="div-tag">Cost Control</span>
+          <span class="div-tag">Multi-trade</span>
         </div>
       </div>
-      <div class="team-card">
-        <div class="team-avatar" aria-hidden="true">MH</div>
-        <h3 class="team-name">Mohammed Hassan</h3>
-        <div class="team-role">Director, Oil &amp; Gas Division</div>
-        <p class="team-bio">15 years in upstream and midstream facilities engineering. Expert in upstream and midstream facilities. 15+ years in pipeline engineering and terminal operations.</p>
-        <div class="team-socials" aria-label="Mohammed Hassan social links">
-          <a href="https://www.linkedin.com/in/" class="team-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-          </a>
+
+      <div class="division-card">
+        <span class="div-num" aria-hidden="true">03</span>
+        <div class="div-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8"/><path d="M19 20V8"/><path d="M5 8 2 4h20l-3 4"/><path d="M9 20v-6h6v6"/></svg>
+        </div>
+        <h3>Infrastructure Development</h3>
+        <p>Roads, bridges, drainage, water supply and power infrastructure at scale.</p>
+        <div class="div-tags">
+          <span class="div-tag">Roads & Bridges</span>
+          <span class="div-tag">Water Supply</span>
+          <span class="div-tag">Power Infra</span>
         </div>
       </div>
-      <div class="team-card">
-        <div class="team-avatar" aria-hidden="true">CE</div>
-        <h3 class="team-name">Chidinma Eze</h3>
-        <div class="team-role">Head of Procurement</div>
-        <p class="team-bio">CIPS-certified supply chain professional. 12+ years in engineering procurement. Expert in NCDMB local content compliance.</p>
-        <div class="team-socials" aria-label="Chidinma Eze social links">
-          <a href="https://www.linkedin.com/in/" class="team-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-          </a>
+
+      <div class="division-card">
+        <span class="div-num" aria-hidden="true">04</span>
+        <div class="div-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 21V9"/><path d="m6 9 6-7 6 7"/><path d="M5 13h14"/></svg>
+        </div>
+        <h3>Oil &amp; Gas Facilities</h3>
+        <p>Pipeline engineering, terminal construction and mechanical installations.</p>
+        <div class="div-tags">
+          <span class="div-tag">Pipeline EPC</span>
+          <span class="div-tag">Terminal Build</span>
+          <span class="div-tag">Mechanical</span>
         </div>
       </div>
-      <div class="team-card">
-        <div class="team-avatar" aria-hidden="true">SA</div>
-        <h3 class="team-name">Segun Afolabi</h3>
-        <div class="team-role">HSE Director</div>
-        <p class="team-bio">NEBOSH IGC · ISO 45001 Lead Auditor. 18+ years building zero-incident safety cultures on major construction projects.</p>
-        <div class="team-socials" aria-label="Segun Afolabi social links">
-          <a href="https://www.linkedin.com/in/" class="team-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-          </a>
+
+      <div class="division-card">
+        <span class="div-num" aria-hidden="true">05</span>
+        <div class="div-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="4" y="9" width="16" height="12" rx="2"/><path d="M12 14v3"/></svg>
+        </div>
+        <h3>Project Consulting</h3>
+        <p>Feasibility, risk management and independent technical advisory services.</p>
+        <div class="div-tags">
+          <span class="div-tag">Feasibility</span>
+          <span class="div-tag">Risk Mgmt</span>
+          <span class="div-tag">Advisory</span>
         </div>
       </div>
-      <div class="team-card">
-        <div class="team-avatar" aria-hidden="true">NO</div>
-        <h3 class="team-name">Nkechi Obiora</h3>
-        <div class="team-role">Finance Director</div>
-        <p class="team-bio">ACCA qualified. 14+ years in construction finance, project cost control, and corporate treasury management.</p>
-        <div class="team-socials" aria-label="Nkechi Obiora social links">
-          <a href="https://www.linkedin.com/in/" class="team-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-          </a>
+
+      <div class="division-card">
+        <span class="div-num" aria-hidden="true">06</span>
+        <div class="div-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8-3 3-3-3 3 8z"/><path d="M11 18H5a2 2 0 0 1-2-2V7"/><circle cx="6" cy="6" r="2"/></svg>
+        </div>
+        <h3>Procurement Services</h3>
+        <p>Strategic sourcing, vendor qualification and supply chain management.</p>
+        <div class="div-tags">
+          <span class="div-tag">Sourcing</span>
+          <span class="div-tag">Vendor QA</span>
+          <span class="div-tag">Logistics</span>
         </div>
       </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     OUR PROCESS — NEW
+     ========================================================= -->
+<section class="section" id="process" aria-labelledby="process-title" style="padding-top:60px;padding-bottom:60px;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">How We Work</span>
+      <h2 class="section-title" id="process-title">A proven process.<br/>Zero surprises.</h2>
+      <p class="section-sub">Every Rafayyl project follows a disciplined six-stage delivery framework — from first brief to final handover.</p>
+    </div>
+    <div class="process-wrap reveal">
+      <div class="process-line" aria-hidden="true"></div>
+      <div class="process-steps">
+
+        <div class="process-step">
+          <div class="p-num" aria-hidden="true">01</div>
+          <h4>Consultation &amp; Brief</h4>
+          <p>We listen, assess scope, and align on objectives, budget and constraints.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="p-num" aria-hidden="true">02</div>
+          <h4>Feasibility &amp; Design</h4>
+          <p>Engineering studies, site surveys, and detailed design development.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="p-num" aria-hidden="true">03</div>
+          <h4>Procurement &amp; Planning</h4>
+          <p>Vendor selection, materials sourcing, programme scheduling and resourcing.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="p-num" aria-hidden="true">04</div>
+          <h4>Construction &amp; Execution</h4>
+          <p>Site mobilisation, full build execution with daily HSE and quality oversight.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="p-num" aria-hidden="true">05</div>
+          <h4>Testing &amp; QA</h4>
+          <p>Commissioning, inspections, punch-list resolution and client sign-offs.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="p-num" aria-hidden="true">06</div>
+          <h4>Handover &amp; Support</h4>
+          <p>As-built documentation, warranties, training and ongoing maintenance options.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     COMPANY VALUES — NEW
+     ========================================================= -->
+<section class="section" id="values" aria-labelledby="values-title" style="padding-top:60px;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">What We Stand For</span>
+      <h2 class="section-title" id="values-title">The values that drive<br/>every decision.</h2>
+      <p class="section-sub">Six principles that shape how we behave, how we build, and how we grow — every single day.</p>
+    </div>
+    <div class="values-grid reveal-stagger">
+
+      <div class="value-card">
+        <div class="v-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div>
+          <h4>Integrity</h4>
+          <p>We do what we say. Transparent reporting, honest pricing, and no shortcuts — ever.</p>
+        </div>
+      </div>
+
+      <div class="value-card">
+        <div class="v-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div>
+          <h4>Safety First</h4>
+          <p>Zero-harm is not a target — it is our non-negotiable standard on every site.</p>
+        </div>
+      </div>
+
+      <div class="value-card">
+        <div class="v-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div>
+          <h4>Excellence</h4>
+          <p>We set high standards and hold ourselves accountable to them on every deliverable.</p>
+        </div>
+      </div>
+
+      <div class="value-card">
+        <div class="v-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="M2 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="M12 18v4"/><path d="m17.24 16.24 2.83 2.83"/><path d="M18 12h4"/><path d="m17.24 7.76 2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+        <div>
+          <h4>Innovation</h4>
+          <p>Embracing modern engineering methods, technology and smarter ways of building.</p>
+        </div>
+      </div>
+
+      <div class="value-card">
+        <div class="v-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22c1.25-1.25 2.5-2.5 3.5-2.5S7.75 20.75 9 22c1.25-1.25 2.5-2.5 3.5-2.5S14.75 20.75 16 22"/><path d="M12 17c-1.1 0-2-.9-2-2V9c0-2.2 1.8-4 4-4h2"/><path d="M16 10h.01"/><circle cx="7" cy="10" r="4"/></svg>
+        </div>
+        <div>
+          <h4>Sustainability</h4>
+          <p>Building for the long term — for our clients, our communities and our environment.</p>
+        </div>
+      </div>
+
+      <div class="value-card">
+        <div class="v-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <h4>Partnership</h4>
+          <p>We treat every client as a long-term partner — invested in their success beyond the project.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
