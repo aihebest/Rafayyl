@@ -1633,6 +1633,149 @@
     }
   }
 
+
+  /* ==========================================================
+     CARD ROTATION — DIVISIONS & VALUES
+     ========================================================== */
+
+  /* 3D tilt rotation for cards */
+  @keyframes card3DTilt {
+    0%   { transform: perspective(1000px) rotateY(-4deg) rotateX(2deg); }
+    25%  { transform: perspective(1000px) rotateY(0deg)  rotateX(-2deg); }
+    50%  { transform: perspective(1000px) rotateY(4deg)  rotateX(2deg); }
+    75%  { transform: perspective(1000px) rotateY(0deg)  rotateX(-2deg); }
+    100% { transform: perspective(1000px) rotateY(-4deg) rotateX(2deg); }
+  }
+  @keyframes card3DTiltAlt {
+    0%   { transform: perspective(1000px) rotateY(4deg)  rotateX(-2deg); }
+    25%  { transform: perspective(1000px) rotateY(0deg)  rotateX(2deg); }
+    50%  { transform: perspective(1000px) rotateY(-4deg) rotateX(-2deg); }
+    75%  { transform: perspective(1000px) rotateY(0deg)  rotateX(2deg); }
+    100% { transform: perspective(1000px) rotateY(4deg)  rotateX(-2deg); }
+  }
+
+  /* Rotating directional glow (simulates spinning border light) */
+  @keyframes glowRotate {
+    0%   { box-shadow: 4px 0 22px rgba(201,168,76,.45), 0 0 6px rgba(201,168,76,.15) inset; }
+    25%  { box-shadow: 0 -4px 22px rgba(201,168,76,.45), 0 0 6px rgba(201,168,76,.15) inset; }
+    50%  { box-shadow: -4px 0 22px rgba(201,168,76,.45), 0 0 6px rgba(201,168,76,.15) inset; }
+    75%  { box-shadow: 0 4px 22px rgba(201,168,76,.45), 0 0 6px rgba(201,168,76,.15) inset; }
+    100% { box-shadow: 4px 0 22px rgba(201,168,76,.45), 0 0 6px rgba(201,168,76,.15) inset; }
+  }
+  @keyframes glowRotateAlt {
+    0%   { box-shadow: -4px 0 22px rgba(201,168,76,.4), 0 0 6px rgba(201,168,76,.1) inset; }
+    25%  { box-shadow: 0 4px 22px rgba(201,168,76,.4), 0 0 6px rgba(201,168,76,.1) inset; }
+    50%  { box-shadow: 4px 0 22px rgba(201,168,76,.4), 0 0 6px rgba(201,168,76,.1) inset; }
+    75%  { box-shadow: 0 -4px 22px rgba(201,168,76,.4), 0 0 6px rgba(201,168,76,.1) inset; }
+    100% { box-shadow: -4px 0 22px rgba(201,168,76,.4), 0 0 6px rgba(201,168,76,.1) inset; }
+  }
+
+  /* Icon full spin (for both grids) */
+  @keyframes iconSpin360 {
+    0%   { transform: rotate(0deg)   scale(1); }
+    45%  { transform: rotate(180deg) scale(1.1); }
+    55%  { transform: rotate(180deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+
+  /* ── Fix: reveal-stagger for division & value grids uses opacity only ── */
+  /* This frees up transform for the 3D tilt animation */
+  .divisions-grid.reveal-stagger > *,
+  .values-grid.reveal-stagger > * {
+    opacity: 0;
+    transform: none !important;
+    transition: opacity 0.8s var(--ease-out) !important;
+  }
+  .divisions-grid.reveal-stagger.in > *,
+  .values-grid.reveal-stagger.in > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── Division cards — 3D tilt + rotating glow ── */
+  .division-card {
+    animation: card3DTilt 6s ease-in-out infinite,
+               glowRotate 6s linear infinite;
+    transform-style: preserve-3d;
+  }
+  .division-card:nth-child(2) { animation-delay: -1s, -1s; }
+  .division-card:nth-child(3) { animation: card3DTiltAlt 6s ease-in-out -2s infinite, glowRotateAlt 6s linear -2s infinite; }
+  .division-card:nth-child(4) { animation: card3DTilt 6s ease-in-out -3s infinite, glowRotate 6s linear -3s infinite; }
+  .division-card:nth-child(5) { animation: card3DTiltAlt 6s ease-in-out -4s infinite, glowRotateAlt 6s linear -4s infinite; }
+  .division-card:nth-child(6) { animation: card3DTilt 6s ease-in-out -5s infinite, glowRotate 6s linear -5s infinite; }
+
+  /* Division icons — continuous 360° spin */
+  .division-card .div-ico {
+    animation: iconSpin360 5s ease-in-out infinite;
+  }
+  .division-card:nth-child(2) .div-ico { animation-delay: -.83s; }
+  .division-card:nth-child(3) .div-ico { animation-delay: -1.66s; }
+  .division-card:nth-child(4) .div-ico { animation-delay: -2.5s; }
+  .division-card:nth-child(5) .div-ico { animation-delay: -3.33s; }
+  .division-card:nth-child(6) .div-ico { animation-delay: -4.16s; }
+
+  /* Pause all division animations on hover */
+  .division-card:hover {
+    animation-play-state: paused;
+    transform: translateY(-8px) !important;
+    border-color: rgba(201,168,76,.55);
+    box-shadow: 0 20px 40px rgba(201,168,76,.35);
+  }
+  .division-card:hover .div-ico {
+    animation: none;
+    transform: rotate(-6deg) scale(1.08);
+    background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+    color: var(--navy-900);
+  }
+
+  /* ── Value cards — opposite direction tilt + alt glow ── */
+  .value-card {
+    animation: card3DTiltAlt 7s ease-in-out infinite,
+               glowRotateAlt 7s linear infinite;
+    transform-style: preserve-3d;
+  }
+  .value-card:nth-child(2) { animation-delay: -1.16s, -1.16s; }
+  .value-card:nth-child(3) { animation: card3DTilt 7s ease-in-out -2.33s infinite, glowRotate 7s linear -2.33s infinite; }
+  .value-card:nth-child(4) { animation: card3DTiltAlt 7s ease-in-out -3.5s infinite, glowRotateAlt 7s linear -3.5s infinite; }
+  .value-card:nth-child(5) { animation: card3DTilt 7s ease-in-out -4.66s infinite, glowRotate 7s linear -4.66s infinite; }
+  .value-card:nth-child(6) { animation: card3DTiltAlt 7s ease-in-out -5.83s infinite, glowRotateAlt 7s linear -5.83s infinite; }
+
+  /* Value icons — 360° spin (slower, staggered) */
+  .value-card .v-ico {
+    animation: iconSpin360 7s ease-in-out infinite;
+    transform-origin: center;
+  }
+  .value-card:nth-child(2) .v-ico { animation-delay: -1.16s; }
+  .value-card:nth-child(3) .v-ico { animation-delay: -2.33s; }
+  .value-card:nth-child(4) .v-ico { animation-delay: -3.5s; }
+  .value-card:nth-child(5) .v-ico { animation-delay: -4.66s; }
+  .value-card:nth-child(6) .v-ico { animation-delay: -5.83s; }
+
+  /* Pause all value animations on hover */
+  .value-card:hover {
+    animation-play-state: paused;
+    transform: translateY(-5px) !important;
+    border-color: var(--glass-border-strong);
+    box-shadow: 0 16px 36px rgba(201,168,76,.25);
+  }
+  .value-card:hover .v-ico {
+    animation-play-state: paused;
+  }
+
+  /* ── Override old conflicting animations ── */
+  /* Remove old floatIcon / swingIcon now replaced above */
+  .division-card .div-ico { animation-name: iconSpin360 !important; }
+  .value-card .v-ico      { animation-name: iconSpin360 !important; }
+
+  /* Reduced motion — show static cards */
+  @media (prefers-reduced-motion: reduce) {
+    .division-card, .value-card,
+    .division-card .div-ico, .value-card .v-ico {
+      animation: none !important;
+      transform: none !important;
+    }
+  }
+
 </style>
 </head>
 <body>
