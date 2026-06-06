@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Rafayyl Engineering and Construction Limited — Civil engineering, construction management, infrastructure development, oil & gas facilities, and procurement services in Nigeria." />
+<title>Rafayyl Engineering & Construction Limited | Building Nigeria's Tomorrow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  /* ==========================================================
+     DESIGN TOKENS
+     ========================================================== */
+  :root{
+    --navy-900:#050B16;
+    --navy-800:#0A1628;
+    --navy-700:#0F1F36;
+    --navy-600:#15294A;
+    --navy-500:#1E365F;
+    --gold-300:#E6CB80;
+    --gold-400:#D4B764;
+    --gold-500:#C9A84C;
+    --gold-600:#A8893A;
+    --gold-700:#7C6526;
+    --white:#FFFFFF;
+    --cream:#FAF7F0;
+    --mute:#B7C0D0;
+    --text-soft:#D6DDEA;
+
+    --glass-bg:rgba(255,255,255,0.06);
+    --glass-bg-strong:rgba(255,255,255,0.09);
+    --glass-border:rgba(201,168,76,0.18);
+    --glass-border-strong:rgba(201,168,76,0.35);
+
+    --shadow-sm:0 4px 14px rgba(0,0,0,.25);
+    --shadow-md:0 10px 30px rgba(0,0,0,.35);
+    --shadow-lg:0 30px 60px rgba(0,0,0,.45);
+    --shadow-gold:0 12px 40px rgba(201,168,76,.25);
+
+    --radius-sm:10px;
+    --radius-md:16px;
+    --radius-lg:24px;
+    --radius-xl:32px;
+
+    --ease-out:cubic-bezier(.2,.7,.2,1);
+    --ease-spring:cubic-bezier(.34,1.56,.64,1);
+
+    --container:1240px;
+    --nav-h:78px;
+  }
+
+  /* ==========================================================
+     RESET & BASE
+     ========================================================== */
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    color:var(--text-soft);
+    background:var(--navy-800);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  h1,h2,h3,h4,h5{
+    font-family:'Playfair Display',Georgia,serif;
+    color:var(--white);
+    line-height:1.15;
+    letter-spacing:-0.01em;
+    margin:0 0 .6em;
+    font-weight:600;
+  }
+  p{margin:0 0 1em;color:var(--text-soft);}
+  a{color:var(--gold-500);text-decoration:none;transition:color .2s var(--ease-out);}
+  a:hover{color:var(--gold-300);}
+  img,svg{display:block;max-width:100%;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+  ::selection{background:var(--gold-500);color:var(--navy-900);}
+
+  /* Focus rings (a11y) */
+  :focus-visible{outline:2px solid var(--gold-400);outline-offset:3px;border-radius:4px;}
+
+  .container{
+    width:100%;
+    max-width:var(--container);
+    margin:0 auto;
+    padding:0 28px;
+  }
+  .section{padding:120px 0;position:relative;}
+  .section-head{text-align:center;max-width:720px;margin:0 auto 64px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Inter',sans-serif;font-size:12px;font-weight:600;
+    letter-spacing:.28em;text-transform:uppercase;
+    color:var(--gold-500);
+    margin-bottom:18px;
+  }
+  .eyebrow::before,.eyebrow::after{
+    content:"";width:32px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-500));
+  }
+  .eyebrow::after{background:linear-gradient(90deg,var(--gold-500),transparent);}
+  .section-title{font-size:clamp(2rem,4vw,3.25rem);font-weight:700;}
+  .section-sub{font-size:1.05rem;color:var(--mute);max-width:620px;margin:0 auto;}
+
+  /* ==========================================================
+     DECORATIVE GLOBAL BG
+     ========================================================== */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(1100px 700px at 12% -10%,rgba(201,168,76,.10),transparent 60%),
+      radial-gradient(900px 700px at 110% 10%,rgba(30,54,95,.55),transparent 60%),
+      linear-gradient(180deg,var(--navy-900) 0%,var(--navy-800) 35%,var(--navy-900) 100%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.35;
+    background-image:
+      linear-gradient(rgba(201,168,76,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(201,168,76,.05) 1px,transparent 1px);
+    background-size:60px 60px;
+    mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
+  }
+
+  /* ==========================================================
+     NAVIGATION
+     ========================================================== */
+  .nav{
+    position:fixed;top:18px;left:18px;right:18px;z-index:100;
+    height:var(--nav-h);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 28px;
+    border-radius:18px;
+    background:rgba(10,22,40,0.55);
+    backdrop-filter:blur(22px) saturate(160%);
+    -webkit-backdrop-filter:blur(22px) saturate(160%);
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 8px 28px rgba(0,0,0,.35);
+    transition:all .35s var(--ease-out);
+  }
+  .nav.scrolled{
+    background:rgba(10,22,40,0.78);
+    border-color:rgba(201,168,76,.22);
+    box-shadow:0 12px 36px rgba(0,0,0,.5);
+  }
+  .brand{display:flex;align-items:center;gap:14px;cursor:pointer;}
+  .brand-mark{
+    width:42px;height:42px;border-radius:11px;
+    background:linear-gradient(135deg,var(--gold-500),var(--gold-700) 70%,var(--navy-700));
+    display:grid;place-items:center;
+    box-shadow:0 6px 18px rgba(201,168,76,.35),inset 0 1px 0 rgba(255,255,255,.25);
+    position:relative;
+  }
+  .brand-mark svg{width:22px;height:22px;color:var(--navy-900);}
+  .brand-text{display:flex;flex-direction:column;line-height:1;}
+  .brand-name{font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--white);letter-spacing:.5px;}
+  .brand-tag{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-500);margin-top:4px;}
+
+  .nav-links{display:flex;align-items:center;gap:6px;}
+  .nav-link{
+    position:relative;padding:10px 16px;font-size:14px;font-weight:500;
+    color:var(--text-soft);border-radius:10px;cursor:pointer;
+    transition:color .2s var(--ease-out),background .2s var(--ease-out);
+  }
+  .nav-link:hover{color:var(--white);background:rgba(255,255,255,.05);}
+  .nav-link::after{
+    content:"";position:absolute;left:50%;bottom:6px;height:2px;width:0;
+    background:var(--gold-500);transition:width .3s var(--ease-out),left .3s var(--ease-out);
+  }
+  .nav-link:hover::after{width:22px;left:calc(50% - 11px);}
+
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:8px;
+    background:linear-gradient(135deg,var(--gold-500),var(--gold-600));
+    color:var(--navy-900);font-weight:600;font-size:13.5px;
+    padding:11px 20px;border-radius:11px;cursor:pointer;
+    box-shadow:0 8px 22px rgba(201,168,76,.3);
+    transition:transform .25s var(--ease-spring),box-shadow .25s var(--ease-out);
+  }
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(201,168,76,.45);}
+  .nav-cta svg{width:14px;height:14px;}
+
+  .menu-toggle{display:none;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,.06);}
+  .menu-toggle span{display:block;width:18px;height:2px;background:var(--white);margin:4px auto;transition:.3s var(--ease-out);}
+  .menu-toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .menu-toggle.open span:nth-child(2){opacity:0;}
+  .menu-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+  @media (max-width:980px){
+    .nav{top:12px;left:12px;right:12px;padding:0 18px;}
+    .nav-links{
+      position:absolute;top:calc(100% + 10px);left:0;right:0;
+      flex-direction:column;align-items:stretch;gap:4px;padding:18px;
+      background:rgba(10,22,40,.95);backdrop-filter:blur(22px);
+      border:1px solid rgba(201,168,76,.2);border-radius:18px;
+      transform:translateY(-12px);opacity:0;pointer-events:none;
+      transition:.3s var(--ease-out);
+    }
+    .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto;}
+    .nav-link{padding:14px 16px;border-radius:10px;}
+    .nav-cta{display:none;}
+    .menu-toggle{display:block;}
+  }
+
+  /* ==========================================================
+     HERO
+     ========================================================== */
+  .hero{
+    position:relative;min-height:100vh;
+    display:flex;align-items:center;
+    padding:calc(var(--nav-h) + 60px) 0 80px;
+    overflow:hidden;
+  }
+  /* Parallax skyline (pure CSS gradient illustration) */
+  .hero-bg{position:absolute;inset:0;z-index:-1;overflow:hidden;}
+  .hero-bg .sky{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(700px 380px at 80% 25%,rgba(201,168,76,.18),transparent 60%),
+      radial-gradient(900px 600px at 20% 70%,rgba(30,54,95,.6),transparent 70%),
+      linear-gradient(180deg,#050B16 0%,#0A1628 50%,#0F1F36 100%);
+  }
+  .hero-bg .skyline{
+    position:absolute;left:0;right:0;bottom:-1px;height:46vh;min-height:340px;
+    background:
+      linear-gradient(180deg,transparent 0%,rgba(5,11,22,.4) 60%,rgba(5,11,22,.95) 100%),
+      /* Buildings layer 1 (back) */
+      linear-gradient(180deg,transparent 50%,#0F1F36 50%) bottom/100% 60% no-repeat;
+  }
+  .hero-bg .city{
+    position:absolute;left:0;right:0;bottom:0;height:40vh;min-height:300px;pointer-events:none;
+    background-image:
+      /* Towers using vertical gradients */
+      linear-gradient(180deg,transparent 30%,#15294A 30%),
+      linear-gradient(180deg,transparent 45%,#0F1F36 45%),
+      linear-gradient(180deg,transparent 22%,#1E365F 22%),
+      linear-gradient(180deg,transparent 38%,#0F1F36 38%),
+      linear-gradient(180deg,transparent 55%,#15294A 55%);
+    background-repeat:no-repeat;
+    background-size:
+      9% 100%,14% 100%,7% 100%,12% 100%,10% 100%;
+    background-position:
+      6% bottom,18% bottom,32% bottom,46% bottom,60% bottom;
+  }
+  .hero-bg .city2{
+    position:absolute;left:0;right:0;bottom:0;height:36vh;min-height:280px;
+    background-image:
+      linear-gradient(180deg,transparent 35%,#1E365F 35%),
+      linear-gradient(180deg,transparent 50%,#15294A 50%),
+      linear-gradient(180deg,transparent 28%,#0F1F36 28%),
+      linear-gradient(180deg,transparent 60%,#1E365F 60%);
+    background-repeat:no-repeat;
+    background-size:11% 100%,8% 100%,13% 100%,15% 100%;
+    background-position:72% bottom,84% bottom,93% bottom,55% bottom;
+    opacity:.85;
+  }
+  /* Construction crane silhouette */
+  .hero-bg .crane{
+    position:absolute;right:6vw;bottom:34vh;width:240px;height:280px;
+    opacity:.6;color:var(--gold-500);
+  }
+  .hero-bg .glow{
+    position:absolute;top:18%;left:50%;width:680px;height:680px;
+    transform:translateX(-50%);
+    background:radial-gradient(circle,rgba(201,168,76,.16),transparent 60%);
+    filter:blur(20px);pointer-events:none;
+  }
+  /* Particles */
+  .particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+  .particle{
+    position:absolute;width:3px;height:3px;border-radius:50%;
+    background:var(--gold-400);opacity:0;
+    box-shadow:0 0 8px var(--gold-400);
+    animation:floatUp 14s linear infinite;
+  }
+  @keyframes floatUp{
+    0%{transform:translateY(20vh) translateX(0);opacity:0;}
+    10%{opacity:.9;}
+    90%{opacity:.5;}
+    100%{transform:translateY(-110vh) translateX(40px);opacity:0;}
+  }
+
+  .hero-inner{position:relative;z-index:2;max-width:880px;}
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:8px 16px;border-radius:999px;
+    background:rgba(201,168,76,.08);
+    border:1px solid rgba(201,168,76,.25);
+    font-size:12px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--gold-400);font-weight:600;
+    backdrop-filter:blur(8px);
+    margin-bottom:28px;
+    animation:fadeUp .9s var(--ease-out) .2s both;
+  }
+  .hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--gold-400);box-shadow:0 0 12px var(--gold-400);animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+
+  .hero h1{
+    font-size:clamp(2.4rem,6vw,5.2rem);
+    font-weight:700;line-height:1.05;
+    letter-spacing:-0.02em;
+    margin-bottom:24px;
+  }
+  .hero h1 .line{display:block;overflow:hidden;}
+  .hero h1 .line span{display:inline-block;animation:slideUp 1s var(--ease-out) both;}
+  .hero h1 .line:nth-child(1) span{animation-delay:.35s;}
+  .hero h1 .line:nth-child(2) span{animation-delay:.55s;}
+  .hero h1 .line:nth-child(3) span{animation-delay:.75s;}
+  .hero h1 .gold{
+    background:linear-gradient(135deg,var(--gold-300) 0%,var(--gold-500) 50%,var(--gold-300) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    font-style:italic;
+  }
+  @keyframes slideUp{from{transform:translateY(100%);opacity:0;}to{transform:translateY(0);opacity:1;}}
+  @keyframes fadeUp{from{transform:translateY(20px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+
+  .hero-sub{
+    font-size:clamp(1rem,1.4vw,1.18rem);
+    color:var(--mute);max-width:620px;margin-bottom:42px;
+    animation:fadeUp 1s var(--ease-out) .95s both;
+  }
+
+  .hero-actions{display:flex;flex-wrap:wrap;gap:16px;animation:fadeUp 1s var(--ease-out) 1.15s both;}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 28px;border-radius:14px;
+    font-weight:600;font-size:14.5px;letter-spacing:.02em;
+    cursor:pointer;position:relative;overflow:hidden;
+    transition:transform .3s var(--ease-spring),box-shadow .3s var(--ease-out);
+  }
+  .btn svg{width:16px;height:16px;transition:transform .3s var(--ease-out);}
+  .btn:hover svg{transform:translateX(4px);}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--gold-500),var(--gold-600));
+    color:var(--navy-900);
+    box-shadow:0 14px 36px rgba(201,168,76,.4),inset 0 1px 0 rgba(255,255,255,.3);
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(201,168,76,.55);}
+  .btn-primary::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);
+    transform:translateX(-100%);transition:transform .8s var(--ease-out);
+  }
+  .btn-primary:hover::after{transform:translateX(100%);}
+
+  .btn-ghost{
+    background:rgba(255,255,255,.05);
+    color:var(--white);
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(10px);
+  }
+  .btn-ghost:hover{
+    background:rgba(255,255,255,.1);
+    border-color:var(--gold-500);
+    transform:translateY(-3px);
+  }
+
+  /* Hero metrics strip */
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:36px;margin-top:64px;
+    padding-top:36px;border-top:1px solid rgba(255,255,255,.08);
+    animation:fadeUp 1s var(--ease-out) 1.4s both;
+  }
+  .hero-meta .item{display:flex;flex-direction:column;}
+  .hero-meta .num{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--gold-500);line-height:1;}
+  .hero-meta .lbl{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-top:8px;}
+
+  .scroll-cue{
+    position:absolute;left:50%;bottom:30px;transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--mute);
+    animation:fadeUp 1s var(--ease-out) 1.6s both;
+  }
+  .scroll-cue .bar{width:1px;height:42px;background:linear-gradient(180deg,var(--gold-500),transparent);position:relative;}
+  .scroll-cue .bar::after{
+    content:"";position:absolute;top:0;left:-1px;width:3px;height:8px;border-radius:3px;background:var(--gold-400);
+    animation:slideDown 2s var(--ease-out) infinite;
+  }
+  @keyframes slideDown{0%{top:0;opacity:1;}80%{opacity:.4;}100%{top:34px;opacity:0;}}
+
+  /* ==========================================================
+     ABOUT
+     ========================================================== */
+  .about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:80px;align-items:center;}
+  .about-visual{position:relative;height:560px;border-radius:var(--radius-xl);overflow:hidden;}
+  .about-visual .img{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 30% 30%,rgba(201,168,76,.25),transparent 60%),
+      linear-gradient(135deg,#15294A 0%,#0F1F36 50%,#1E365F 100%);
+  }
+  .about-visual .img::before{
+    /* Architectural lines pattern */
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(45deg,transparent 48%,rgba(201,168,76,.15) 49%,rgba(201,168,76,.15) 51%,transparent 52%),
+      linear-gradient(-45deg,transparent 48%,rgba(201,168,76,.08) 49%,rgba(201,168,76,.08) 51%,transparent 52%);
+    background-size:60px 60px,80px 80px;
+    opacity:.6;
+  }
+  .about-visual .img::after{
+    /* Building silhouette */
+    content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+    width:80%;height:75%;
+    background:
+      linear-gradient(180deg,transparent 22%,rgba(10,22,40,.85) 22%) 0 100%/22% 100% no-repeat,
+      linear-gradient(180deg,transparent 10%,rgba(10,22,40,.92) 10%) 25% 100%/18% 100% no-repeat,
+      linear-gradient(180deg,transparent 32%,rgba(10,22,40,.85) 32%) 46% 100%/15% 100% no-repeat,
+      linear-gradient(180deg,transparent 18%,rgba(10,22,40,.92) 18%) 63% 100%/20% 100% no-repeat,
+      linear-gradient(180deg,transparent 40%,rgba(10,22,40,.85) 40%) 86% 100%/14% 100% no-repeat;
+  }
+  .about-visual .float-card{
+    position:absolute;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    background:rgba(10,22,40,.7);border:1px solid var(--glass-border-strong);
+    border-radius:18px;padding:18px 22px;box-shadow:var(--shadow-md);
+  }
+  .about-visual .fc-1{top:32px;left:32px;}
+  .about-visual .fc-1 .v{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--gold-500);line-height:1;}
+  .about-visual .fc-1 .k{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);margin-top:6px;}
+  .about-visual .fc-2{
+    bottom:32px;right:32px;display:flex;align-items:center;gap:14px;
+  }
+  .about-visual .fc-2 .ic{
+    width:44px;height:44px;border-radius:12px;
+    background:linear-gradient(135deg,var(--gold-500),var(--gold-700));
+    display:grid;place-items:center;color:var(--navy-900);
+  }
+  .about-visual .fc-2 .ic svg{width:22px;height:22px;}
+  .about-visual .fc-2 .txt strong{display:block;color:var(--white);font-size:14px;font-weight:600;}
+  .about-visual .fc-2 .txt span{font-size:12px;color:var(--mute);}
+
+  .about-visual .badge-ring{
+    position:absolute;top:50%;right:-44px;transform:translateY(-50%);
+    width:120px;height:120px;border-radius:50%;
+    background:rgba(10,22,40,.85);backdrop-filter:blur(20px);
+    border:1px solid var(--glass-border-strong);
+    display:grid;place-items:center;text-align:center;
+    box-shadow:var(--shadow-gold);
+  }
+  .badge-ring .yr{font-family:'Playfair Display',serif;font-size:34px;color:var(--gold-500);font-weight:700;line-height:1;}
+  .badge-ring .lbl{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);margin-top:4px;}
+
+  .about-content h2{font-size:clamp(2rem,3.6vw,3rem);}
+  .about-content h2 em{font-style:italic;color:var(--gold-500);font-family:'Playfair Display',serif;font-weight:500;}
+  .about-list{list-style:none;padding:0;margin:24px 0 32px;display:grid;gap:14px;}
+  .about-list li{display:flex;gap:14px;align-items:flex-start;color:var(--text-soft);font-size:15px;}
+  .about-list .check{
+    flex:none;width:24px;height:24px;border-radius:50%;
+    background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);
+    display:grid;place-items:center;color:var(--gold-400);margin-top:2px;
+  }
+  .about-list .check svg{width:13px;height:13px;}
+
+  /* Counter strip */
+  .stats{
+    margin-top:88px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+  }
+  .stat-card{
+    padding:32px 28px;border-radius:var(--radius-lg);
+    background:var(--glass-bg);border:1px solid var(--glass-border);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    position:relative;overflow:hidden;
+    transition:transform .35s var(--ease-out),border-color .35s var(--ease-out),background .35s var(--ease-out);
+  }
+  .stat-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold-500),transparent);
+    transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out);
+  }
+  .stat-card:hover{transform:translateY(-6px);border-color:var(--glass-border-strong);background:var(--glass-bg-strong);}
+  .stat-card:hover::before{transform:scaleX(1);}
+  .stat-card .ico{
+    width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
+    background:rgba(201,168,76,.12);color:var(--gold-400);margin-bottom:18px;
+  }
+  .stat-card .ico svg{width:22px;height:22px;}
+  .stat-card .num{
+    font-family:'Playfair Display',serif;font-weight:700;font-size:46px;line-height:1;
+    background:linear-gradient(135deg,var(--white),var(--gold-300) 70%,var(--gold-500));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .stat-card .suf{color:var(--gold-500);font-family:'Playfair Display',serif;font-size:36px;font-weight:500;}
+  .stat-card .lbl{margin-top:10px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);}
+
+  @media (max-width:980px){
+    .about-grid{grid-template-columns:1fr;gap:60px;}
+    .about-visual{height:480px;}
+    .about-visual .badge-ring{right:24px;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+  }
+
+  /* ==========================================================
+     SERVICES
+     ========================================================== */
+  .services{position:relative;}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .service-card{
+    position:relative;padding:38px 32px;border-radius:var(--radius-lg);
+    background:linear-gradient(160deg,rgba(255,255,255,.05) 0%,rgba(255,255,255,.02) 100%);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    overflow:hidden;
+    transition:transform .5s var(--ease-out),border-color .5s var(--ease-out);
+  }
+  .service-card::before{
+    content:"";position:absolute;inset:0;border-radius:var(--radius-lg);
+    background:radial-gradient(400px 200px at var(--mx,50%) var(--my,0%),rgba(201,168,76,.16),transparent 60%);
+    opacity:0;transition:opacity .4s var(--ease-out);pointer-events:none;
+  }
+  .service-card:hover{transform:translateY(-8px);border-color:rgba(201,168,76,.35);}
+  .service-card:hover::before{opacity:1;}
+  .service-card .num{
+    position:absolute;top:24px;right:28px;
+    font-family:'Playfair Display',serif;font-size:60px;font-weight:700;
+    color:rgba(201,168,76,.12);line-height:1;
+  }
+  .service-card .ico{
+    width:62px;height:62px;border-radius:16px;display:grid;place-items:center;
+    background:linear-gradient(135deg,rgba(201,168,76,.18),rgba(201,168,76,.04));
+    border:1px solid rgba(201,168,76,.3);
+    color:var(--gold-400);
+    margin-bottom:24px;
+    transition:transform .4s var(--ease-spring),background .4s var(--ease-out);
+  }
+  .service-card:hover .ico{
+    transform:rotate(-6deg) scale(1.05);
+    background:linear-gradient(135deg,var(--gold-500),var(--gold-600));
+    color:var(--navy-900);
+  }
+  .service-card .ico svg{width:28px;height:28px;}
+  .service-card h3{font-size:1.5rem;margin-bottom:12px;}
+  .service-card p{font-size:14.5px;color:var(--mute);margin-bottom:24px;}
+  .service-card .link{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--gold-500);
+  }
+  .service-card .link svg{width:14px;height:14px;transition:transform .3s var(--ease-out);}
+  .service-card:hover .link svg{transform:translateX(6px);}
+
+  @media (max-width:980px){.services-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:620px){.services-grid{grid-template-columns:1fr;}}
+
+  /* ==========================================================
+     WHY CHOOSE US
+     ========================================================== */
+  .why{position:relative;}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .why-card{
+    padding:32px 26px;border-radius:var(--radius-lg);
+    background:var(--glass-bg);border:1px solid var(--glass-border);
+    backdrop-filter:blur(14px);
+    text-align:left;position:relative;overflow:hidden;
+    transition:transform .4s var(--ease-out),border-color .4s var(--ease-out);
+  }
+  .why-card::after{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:linear-gradient(180deg,var(--gold-500),transparent);
+    transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease-out);
+  }
+  .why-card:hover{transform:translateY(-6px);border-color:var(--glass-border-strong);}
+  .why-card:hover::after{transform:scaleY(1);}
+  .why-card .ico{
+    width:54px;height:54px;border-radius:14px;display:grid;place-items:center;
+    background:rgba(201,168,76,.14);color:var(--gold-400);margin-bottom:20px;
+  }
+  .why-card .ico svg{width:26px;height:26px;}
+  .why-card h4{font-size:1.18rem;margin-bottom:10px;color:var(--white);}
+  .why-card p{font-size:14px;color:var(--mute);margin:0;}
+
+  @media (max-width:980px){.why-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.why-grid{grid-template-columns:1fr;}}
+
+  /* ==========================================================
+     PROJECTS
+     ========================================================== */
+  .projects{position:relative;}
+  .filters{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:50px;}
+  .filter-btn{
+    padding:11px 22px;border-radius:999px;
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+    color:var(--text-soft);font-size:13px;font-weight:500;letter-spacing:.04em;
+    transition:all .25s var(--ease-out);
+  }
+  .filter-btn:hover{color:var(--white);border-color:var(--gold-500);}
+  .filter-btn.active{
+    background:linear-gradient(135deg,var(--gold-500),var(--gold-600));
+    color:var(--navy-900);border-color:transparent;font-weight:600;
+    box-shadow:0 8px 22px rgba(201,168,76,.3);
+  }
+
+  .grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    grid-auto-rows:240px;gap:18px;
+  }
+  .grid-item{
+    position:relative;border-radius:var(--radius-lg);overflow:hidden;
+    cursor:pointer;
+    transition:transform .5s var(--ease-out),opacity .4s var(--ease-out);
+  }
+  .grid-item.tall{grid-row:span 2;}
+  .grid-item.wide{grid-column:span 2;}
+  .grid-item .visual{position:absolute;inset:0;transition:transform .7s var(--ease-out);}
+  .grid-item:hover .visual{transform:scale(1.08);}
+  .grid-item .overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 40%,rgba(5,11,22,.4) 60%,rgba(5,11,22,.95) 100%);
+    transition:opacity .4s var(--ease-out);
+  }
+  .grid-item .meta{
+    position:absolute;left:24px;right:24px;bottom:22px;color:var(--white);z-index:2;
+    transform:translateY(8px);opacity:.95;transition:.4s var(--ease-out);
+  }
+  .grid-item:hover .meta{transform:translateY(0);opacity:1;}
+  .grid-item .cat{
+    display:inline-block;font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--gold-400);font-weight:600;margin-bottom:8px;
+    padding:5px 12px;border-radius:999px;background:rgba(201,168,76,.12);
+    border:1px solid rgba(201,168,76,.3);
+  }
+  .grid-item h4{font-size:1.25rem;margin:0 0 6px;}
+  .grid-item .loc{font-size:13px;color:var(--mute);display:flex;align-items:center;gap:6px;}
+  .grid-item .loc svg{width:12px;height:12px;}
+  .grid-item.hide{opacity:0;transform:scale(.92);pointer-events:none;height:0;grid-row:auto;grid-column:auto;overflow:hidden;}
+
+  /* Per-item gradient backdrops */
+  .v1{background:radial-gradient(circle at 30% 30%,rgba(201,168,76,.3),transparent 60%),linear-gradient(135deg,#1E365F,#0A1628);}
+  .v1::after{content:"";position:absolute;left:0;right:0;bottom:0;height:60%;background:linear-gradient(180deg,transparent,rgba(10,22,40,.7));}
+  .v2{background:linear-gradient(135deg,#15294A 0%,#0A1628 100%);}
+  .v2::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 30px,rgba(201,168,76,.07) 30px 31px);}
+  .v3{background:radial-gradient(800px 400px at 70% 20%,rgba(201,168,76,.25),transparent 60%),linear-gradient(180deg,#0F1F36,#050B16);}
+  .v4{background:linear-gradient(160deg,#1E365F 0%,#15294A 60%,#0A1628 100%);}
+  .v4::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 50px,rgba(255,255,255,.04) 50px 51px);}
+  .v5{background:radial-gradient(circle at 70% 70%,rgba(201,168,76,.2),transparent 55%),linear-gradient(135deg,#0A1628,#15294A);}
+  .v6{background:linear-gradient(120deg,#0F1F36 0%,#1E365F 100%);}
+  .v6::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.08) 1px,transparent 1px);background-size:40px 40px;}
+  /* Add building silhouettes to each */
+  .visual::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:50%;
+    background-image:
+      linear-gradient(180deg,transparent 30%,rgba(5,11,22,.65) 30%),
+      linear-gradient(180deg,transparent 18%,rgba(5,11,22,.5) 18%),
+      linear-gradient(180deg,transparent 45%,rgba(5,11,22,.65) 45%),
+      linear-gradient(180deg,transparent 25%,rgba(5,11,22,.5) 25%);
+    background-repeat:no-repeat;
+    background-size:18% 100%,22% 100%,14% 100%,20% 100%;
+    background-position:8% bottom,32% bottom,55% bottom,76% bottom;
+    pointer-events:none;
+  }
+
+  @media (max-width:980px){
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .grid-item.wide{grid-column:span 1;}
+  }
+  @media (max-width:620px){
+    .grid{grid-template-columns:1fr;}
+    .grid-item.tall{grid-row:span 1;}
+  }
+
+  /* ==========================================================
+     TESTIMONIALS
+     ========================================================== */
+  .testimonials{position:relative;}
+  .t-track{
+    position:relative;max-width:880px;margin:0 auto;
+  }
+  .t-card{
+    padding:54px 48px;border-radius:var(--radius-xl);
+    background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+    border:1px solid var(--glass-border-strong);
+    backdrop-filter:blur(20px);
+    text-align:center;position:relative;
+    display:none;
+    animation:fadeIn .6s var(--ease-out);
+  }
+  .t-card.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+  .t-card .quote-ic{
+    width:62px;height:62px;border-radius:18px;display:grid;place-items:center;margin:0 auto 24px;
+    background:linear-gradient(135deg,var(--gold-500),var(--gold-700));
+    color:var(--navy-900);box-shadow:var(--shadow-gold);
+  }
+  .t-card .quote-ic svg{width:30px;height:30px;}
+  .t-card blockquote{
+    margin:0 0 32px;font-family:'Playfair Display',serif;font-size:clamp(1.1rem,2vw,1.5rem);
+    line-height:1.55;color:var(--white);font-style:italic;font-weight:400;
+  }
+  .t-card .author{display:flex;align-items:center;justify-content:center;gap:14px;}
+  .t-card .avatar{
+    width:54px;height:54px;border-radius:50%;
+    background:linear-gradient(135deg,var(--gold-500),var(--navy-700));
+    display:grid;place-items:center;color:var(--navy-900);font-weight:700;font-family:'Playfair Display',serif;font-size:18px;
+    border:2px solid rgba(201,168,76,.4);
+  }
+  .t-card .who{text-align:left;}
+  .t-card .name{color:var(--white);font-weight:600;font-size:15px;}
+  .t-card .role{font-size:12px;color:var(--gold-500);letter-spacing:.16em;text-transform:uppercase;}
+
+  .t-nav{display:flex;justify-content:center;gap:10px;margin-top:32px;}
+  .t-dot{
+    width:32px;height:4px;border-radius:4px;background:rgba(255,255,255,.15);
+    transition:.3s var(--ease-out);
+  }
+  .t-dot.active{background:linear-gradient(90deg,var(--gold-500),var(--gold-300));width:48px;}
+  .t-arrows{position:absolute;top:50%;left:0;right:0;display:flex;justify-content:space-between;transform:translateY(-50%);pointer-events:none;}
+  .t-arrow{
+    width:48px;height:48px;border-radius:50%;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    color:var(--white);backdrop-filter:blur(10px);
+    display:grid;place-items:center;cursor:pointer;pointer-events:all;
+    transition:.25s var(--ease-out);
+  }
+  .t-arrow:hover{background:var(--gold-500);color:var(--navy-900);border-color:transparent;}
+  .t-arrow.prev{margin-left:-24px;}
+  .t-arrow.next{margin-right:-24px;}
+  .t-arrow svg{width:18px;height:18px;}
+  @media (max-width:720px){
+    .t-card{padding:40px 28px;}
+    .t-arrow.prev{margin-left:0;}
+    .t-arrow.next{margin-right:0;}
+  }
+
+  /* ==========================================================
+     CONTACT
+     ========================================================== */
+  .contact-grid{display:grid;grid-template-columns:1.05fr 1.2fr;gap:50px;align-items:stretch;}
+  .contact-info{
+    padding:48px 40px;border-radius:var(--radius-xl);
+    background:linear-gradient(165deg,rgba(201,168,76,.1),rgba(201,168,76,.02));
+    border:1px solid rgba(201,168,76,.25);
+    backdrop-filter:blur(18px);position:relative;overflow:hidden;
+  }
+  .contact-info::before{
+    content:"";position:absolute;width:260px;height:260px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,168,76,.25),transparent 70%);
+    top:-80px;right:-80px;filter:blur(20px);
+  }
+  .contact-info h3{font-size:1.9rem;margin-bottom:12px;position:relative;}
+  .contact-info > p{color:var(--mute);font-size:14.5px;margin-bottom:36px;position:relative;}
+  .ci-list{list-style:none;padding:0;margin:0 0 36px;display:grid;gap:18px;position:relative;}
+  .ci-list li{display:flex;gap:16px;align-items:flex-start;}
+  .ci-list .ico{
+    flex:none;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
+    background:rgba(201,168,76,.15);color:var(--gold-400);border:1px solid rgba(201,168,76,.3);
+  }
+  .ci-list .ico svg{width:20px;height:20px;}
+  .ci-list .k{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);margin-bottom:4px;}
+  .ci-list .v{color:var(--white);font-size:15px;font-weight:500;}
+
+  .social{display:flex;gap:10px;position:relative;}
+  .social a{
+    width:44px;height:44px;border-radius:12px;display:grid;place-items:center;
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--white);
+    transition:.25s var(--ease-out);
+  }
+  .social a:hover{background:var(--gold-500);color:var(--navy-900);border-color:transparent;transform:translateY(-3px);}
+  .social svg{width:18px;height:18px;}
+
+  /* Form */
+  .form-wrap{
+    padding:48px 40px;border-radius:var(--radius-xl);
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+  }
+  .form-wrap h3{font-size:1.6rem;margin-bottom:6px;}
+  .form-wrap > p{color:var(--mute);font-size:14px;margin-bottom:28px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+  .field{display:flex;flex-direction:column;gap:8px;}
+  .field label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-500);font-weight:600;}
+  .field input,.field textarea,.field select{
+    width:100%;padding:14px 16px;border-radius:12px;
+    background:rgba(10,22,40,.6);border:1px solid rgba(255,255,255,.1);
+    color:var(--white);font-family:inherit;font-size:14.5px;
+    transition:.25s var(--ease-out);
+  }
+  .field textarea{resize:vertical;min-height:130px;}
+  .field input:focus,.field textarea:focus,.field select:focus{
+    outline:none;border-color:var(--gold-500);
+    background:rgba(10,22,40,.85);
+    box-shadow:0 0 0 4px rgba(201,168,76,.12);
+  }
+  .field input::placeholder,.field textarea::placeholder{color:rgba(183,192,208,.5);}
+
+  .map{
+    margin-top:50px;border-radius:var(--radius-xl);overflow:hidden;
+    border:1px solid var(--glass-border);height:340px;position:relative;
+    background:
+      radial-gradient(circle at 50% 50%,rgba(201,168,76,.18),transparent 60%),
+      linear-gradient(135deg,#0F1F36,#15294A);
+  }
+  .map::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(201,168,76,.08) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(201,168,76,.08) 1px,transparent 1px);
+    background-size:50px 50px;
+  }
+  .map .pin{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-100%);
+    width:46px;height:46px;border-radius:50%;
+    background:var(--gold-500);display:grid;place-items:center;color:var(--navy-900);
+    box-shadow:0 12px 30px rgba(201,168,76,.5);
+    animation:bounce 2s ease-in-out infinite;
+  }
+  .map .pin::after{
+    content:"";position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
+    border:8px solid transparent;border-top-color:var(--gold-500);
+  }
+  .map .pin svg{width:22px;height:22px;}
+  @keyframes bounce{0%,100%{transform:translate(-50%,-100%);}50%{transform:translate(-50%,-110%);}}
+  .map .pulse{
+    position:absolute;top:50%;left:50%;width:80px;height:80px;border-radius:50%;
+    background:rgba(201,168,76,.3);transform:translate(-50%,-50%);
+    animation:pulseRing 2s ease-out infinite;
+  }
+  @keyframes pulseRing{0%{transform:translate(-50%,-50%) scale(.4);opacity:.8;}100%{transform:translate(-50%,-50%) scale(2);opacity:0;}}
+  .map .label{
+    position:absolute;bottom:24px;left:24px;
+    padding:12px 18px;border-radius:12px;
+    background:rgba(10,22,40,.85);backdrop-filter:blur(14px);
+    border:1px solid var(--glass-border-strong);color:var(--white);
+    font-size:13px;font-weight:600;display:flex;align-items:center;gap:10px;
+  }
+  .map .label svg{width:14px;height:14px;color:var(--gold-500);}
+
+  @media (max-width:980px){
+    .contact-grid{grid-template-columns:1fr;}
+    .contact-info,.form-wrap{padding:36px 28px;}
+    .form-row{grid-template-columns:1fr;}
+  }
+
+  /* ==========================================================
+     FOOTER
+     ========================================================== */
+  .footer{
+    background:linear-gradient(180deg,var(--navy-900),#020610);
+    padding:80px 0 30px;
+    border-top:1px solid rgba(201,168,76,.15);
+    position:relative;
+  }
+  .footer::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold-500) 50%,transparent);
+    opacity:.6;
+  }
+  .footer-grid{
+    display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:50px;margin-bottom:60px;
+  }
+  .footer .brand-block .brand{margin-bottom:18px;}
+  .footer .brand-block p{font-size:14px;color:var(--mute);margin-bottom:20px;}
+  .footer .rc{
+    display:inline-flex;flex-direction:column;gap:4px;padding:14px 20px;
+    border-radius:12px;background:rgba(201,168,76,.08);
+    border:1px solid rgba(201,168,76,.22);
+  }
+  .footer .rc span{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-500);font-weight:600;}
+  .footer .rc strong{color:var(--white);font-size:16px;font-family:'Playfair Display',serif;letter-spacing:.04em;}
+  .footer h5{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-500);margin-bottom:20px;font-family:'Inter',sans-serif;font-weight:600;}
+  .footer ul{list-style:none;padding:0;margin:0;display:grid;gap:12px;}
+  .footer ul a{color:var(--text-soft);font-size:14px;display:inline-flex;align-items:center;gap:6px;}
+  .footer ul a:hover{color:var(--gold-400);transform:translateX(4px);transition:.25s var(--ease-out);}
+  .footer-news input{
+    width:100%;padding:14px 16px;border-radius:12px;
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+    color:var(--white);font-family:inherit;font-size:14px;margin-bottom:12px;
+  }
+  .footer-news input:focus{outline:none;border-color:var(--gold-500);}
+  .footer-news button{
+    width:100%;padding:13px;border-radius:12px;
+    background:linear-gradient(135deg,var(--gold-500),var(--gold-600));
+    color:var(--navy-900);font-weight:600;font-size:13.5px;letter-spacing:.04em;
+    box-shadow:0 8px 22px rgba(201,168,76,.25);
+    transition:.25s var(--ease-spring);
+  }
+  .footer-news button:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(201,168,76,.4);}
+
+  .footer-bottom{
+    padding-top:28px;border-top:1px solid rgba(255,255,255,.08);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+    font-size:13px;color:var(--mute);
+  }
+  .footer-bottom .links{display:flex;gap:24px;}
+  .footer-bottom .links a{color:var(--mute);}
+  .footer-bottom .links a:hover{color:var(--gold-400);}
+
+  @media (max-width:980px){
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .footer-grid{grid-template-columns:1fr;}
+    .footer-bottom{flex-direction:column;text-align:center;}
+  }
+
+  /* ==========================================================
+     REVEAL ANIMATIONS
+     ========================================================== */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal-stagger > *{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out);}
+  .reveal-stagger.in > *{opacity:1;transform:translateY(0);}
+  .reveal-stagger.in > *:nth-child(1){transition-delay:.05s;}
+  .reveal-stagger.in > *:nth-child(2){transition-delay:.12s;}
+  .reveal-stagger.in > *:nth-child(3){transition-delay:.19s;}
+  .reveal-stagger.in > *:nth-child(4){transition-delay:.26s;}
+  .reveal-stagger.in > *:nth-child(5){transition-delay:.33s;}
+  .reveal-stagger.in > *:nth-child(6){transition-delay:.4s;}
+
+  /* ==========================================================
+     COMPLIANCE MARQUEE
+     ========================================================== */
+  .compliance{
+    padding:70px 0 50px;
+    position:relative;
+    overflow:hidden;
+  }
+  .compliance::before,.compliance::after{
+    content:"";position:absolute;top:0;bottom:0;width:160px;z-index:3;pointer-events:none;
+  }
+  .compliance::before{left:0;background:linear-gradient(90deg,var(--navy-800) 0%,transparent 100%);}
+  .compliance::after{right:0;background:linear-gradient(-90deg,var(--navy-800) 0%,transparent 100%);}
+
+  .compliance .head{text-align:center;margin-bottom:34px;}
+  .compliance .head .label{
+    display:inline-flex;align-items:center;gap:14px;
+    font-size:11px;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--mute);font-weight:500;
+  }
+  .compliance .head .label::before,.compliance .head .label::after{
+    content:"";width:42px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.5));
+  }
+  .compliance .head .label::after{background:linear-gradient(90deg,rgba(201,168,76,.5),transparent);}
+  .compliance .head .label .sep{color:var(--gold-500);}
+
+  .marquee{
+    display:flex;width:max-content;gap:18px;
+    animation:marqueeScroll 38s linear infinite;
+  }
+  .compliance:hover .marquee{animation-play-state:paused;}
+  @keyframes marqueeScroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  .pill{
+    flex:none;display:inline-flex;align-items:center;gap:12px;
+    padding:14px 26px;border-radius:999px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(201,168,76,.22);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    color:var(--white);font-size:14px;font-weight:500;letter-spacing:.02em;
+    white-space:nowrap;
+    transition:border-color .3s var(--ease-out),background .3s var(--ease-out),transform .3s var(--ease-out);
+  }
+  .pill:hover{
+    border-color:var(--gold-500);
+    background:rgba(201,168,76,.08);
+    transform:translateY(-2px);
+  }
+  .pill .ic{
+    width:22px;height:22px;display:grid;place-items:center;color:var(--gold-500);flex:none;
+  }
+  .pill .ic svg{width:18px;height:18px;}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important;}
+    .reveal,.reveal-stagger > *{opacity:1!important;transform:none!important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     NAVIGATION
+     ========================================================= -->
+<nav class="nav" id="nav" aria-label="Primary">
+  <a href="#home" class="brand" aria-label="Rafayyl Engineering home">
+    <div class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h6"/>
+      </svg>
+    </div>
+    <div class="brand-text">
+      <span class="brand-name">RAFAYYL</span>
+      <span class="brand-tag">Engineering · Est. 2024</span>
+    </div>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a class="nav-link" href="#about">About</a>
+    <a class="nav-link" href="#services">Services</a>
+    <a class="nav-link" href="#why">Why Us</a>
+    <a class="nav-link" href="#projects">Projects</a>
+    <a class="nav-link" href="#testimonials">Clients</a>
+    <a class="nav-link" href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">
+    Get a Quote
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+  </a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+<section class="hero" id="home">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="sky"></div>
+    <div class="glow"></div>
+    <div class="skyline"></div>
+    <div class="city"></div>
+    <div class="city2"></div>
+    <svg class="crane" viewBox="0 0 240 280" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <line x1="120" y1="0" x2="120" y2="280"/>
+      <line x1="10" y1="50" x2="230" y2="50"/>
+      <line x1="10" y1="50" x2="120" y2="0"/>
+      <line x1="230" y1="50" x2="120" y2="0"/>
+      <line x1="60" y1="50" x2="60" y2="80"/>
+      <rect x="40" y="80" width="40" height="22" rx="2"/>
+      <line x1="120" y1="50" x2="120" y2="20"/>
+      <!-- lattice -->
+      <path d="M120 80 L110 110 L130 110 L120 140 L110 170 L130 170 L120 200 L110 230 L130 230 L120 260"/>
+    </svg>
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <div class="container hero-inner">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      <span>Building Nigeria's Tomorrow · Since 2024</span>
+    </div>
+    <h1>
+      <span class="line"><span>Engineering</span></span>
+      <span class="line"><span>Excellence,</span></span>
+      <span class="line"><span class="gold">Built to Last.</span></span>
+    </h1>
+    <p class="hero-sub">
+      Rafayyl Engineering and Construction Limited delivers world-class civil engineering, infrastructure development, and oil &amp; gas facility services across Nigeria — with the precision, integrity, and craftsmanship the future demands.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">
+        Get a Quote
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <a href="#projects" class="btn btn-ghost">
+        View Projects
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </a>
+    </div>
+    <div class="hero-meta">
+      <div class="item"><span class="num" data-count="50">0</span><span class="lbl">Projects Delivered</span></div>
+      <div class="item"><span class="num" data-count="120">0</span><span class="lbl">Skilled Professionals</span></div>
+      <div class="item"><span class="num" data-count="98" data-suffix="%">0%</span><span class="lbl">Client Satisfaction</span></div>
+      <div class="item"><span class="num" data-count="6">0</span><span class="lbl">Specialized Divisions</span></div>
+    </div>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="bar"></div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ABOUT
+     ========================================================= -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="img"></div>
+        <div class="float-card fc-1">
+          <div class="v">04 / 2024</div>
+          <div class="k">Incorporated</div>
+        </div>
+        <div class="float-card fc-2">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9 18l-5-5"/></svg>
+          </div>
+          <div class="txt">
+            <strong>CAC Certified</strong>
+            <span>RC 7451347 · Nigeria</span>
+          </div>
+        </div>
+        <div class="badge-ring">
+          <div>
+            <div class="yr">A+</div>
+            <div class="lbl">Rated</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-content reveal">
+        <span class="eyebrow">About Rafayyl</span>
+        <h2>A new standard for <em>engineering & construction</em> in Nigeria.</h2>
+        <p>
+          Founded in April 2024 and registered under RC No. 7451347, Rafayyl Engineering and Construction Limited brings together a multidisciplinary team of engineers, project managers, and procurement specialists committed to delivering projects that perform — on schedule, on budget, and to international standards.
+        </p>
+        <ul class="about-list">
+          <li>
+            <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <span>End-to-end delivery — from feasibility studies to commissioning and handover.</span>
+          </li>
+          <li>
+            <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <span>HSE-led culture aligned with global oil &amp; gas and construction standards.</span>
+          </li>
+          <li>
+            <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <span>Local content depth combined with international engineering expertise.</span>
+          </li>
+        </ul>
+        <a href="#services" class="btn btn-primary">
+          Explore Our Services
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Stat counters -->
+    <div class="stats reveal-stagger">
+      <div class="stat-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><span class="num" data-count="1">0</span><span class="suf">+</span></div>
+        <div class="lbl">Years of Excellence</div>
+      </div>
+      <div class="stat-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h.01"/><path d="M9 13h.01"/><path d="M9 17h.01"/><path d="M15 9h.01"/><path d="M15 13h.01"/></svg></div>
+        <div><span class="num" data-count="50">0</span><span class="suf">+</span></div>
+        <div class="lbl">Projects Delivered</div>
+      </div>
+      <div class="stat-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div><span class="num" data-count="35">0</span><span class="suf">+</span></div>
+        <div class="lbl">Happy Clients</div>
+      </div>
+      <div class="stat-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><circle cx="17" cy="11" r="3"/><circle cx="20" cy="20" r="2"/></svg></div>
+        <div><span class="num" data-count="120">0</span><span class="suf">+</span></div>
+        <div class="lbl">Team Members</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     COMPLIANCE MARQUEE
+     ========================================================= -->
+<section class="compliance" aria-label="Compliance and standards">
+  <div class="container head">
+    <span class="label">Compliance <span class="sep">·</span> Governance <span class="sep">·</span> Standards</span>
+  </div>
+  <div class="marquee" id="marquee">
+    <!-- Set A -->
+    <div class="pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg></span>ISO 9001 Compliant</div>
+    <div class="pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></span>NSE Standards</div>
+    <div class="pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18"/><path d="M5 11V8a4 4 0 0 1 8 0v3"/><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M16 11V8a3 3 0 0 1 6 0v3"/></svg></span>COREN Practice Code</div>
+    <div class="pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h.01"/><path d="M9 13h.01"/><path d="M15 9h.01"/><path d="M15 13h.01"/></svg></span>Federal &amp; State Approved</div>
+    <div class="pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>Quality Engineered Delivery</div>
+    <div class="pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>CAC Registered</div>
+    <div class="pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></span>CAMA 2020 Compliant</div>
+    <div class="pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="3" y="9" width="18" height="12" rx="2"/></svg></span>FIRS Tax Compliant</div>
+    <div class="pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9 18l-5-5"/></svg></span>NIPC Certified</div>
+    <div class="pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></span>NCDMB Registered</div>
+
+    <!-- Set B (duplicate for seamless loop) -->
+    <div class="pill" aria-hidden="true"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg></span>ISO 9001 Compliant</div>
+    <div class="pill" aria-hidden="true"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></span>NSE Standards</div>
+    <div class="pill" aria-hidden="true"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18"/><path d="M5 11V8a4 4 0 0 1 8 0v3"/><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M16 11V8a3 3 0 0 1 6 0v3"/></svg></span>COREN Practice Code</div>
+    <div class="pill" aria-hidden="true"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h.01"/><path d="M9 13h.01"/><path d="M15 9h.01"/><path d="M15 13h.01"/></svg></span>Federal &amp; State Approved</div>
+    <div class="pill" aria-hidden="true"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>Quality Engineered Delivery</div>
+    <div class="pill" aria-hidden="true"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>CAC Registered</div>
+    <div class="pill" aria-hidden="true"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></span>CAMA 2020 Compliant</div>
+    <div class="pill" aria-hidden="true"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="3" y="9" width="18" height="12" rx="2"/></svg></span>FIRS Tax Compliant</div>
+    <div class="pill" aria-hidden="true"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9 18l-5-5"/></svg></span>NIPC Certified</div>
+    <div class="pill" aria-hidden="true"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></span>NCDMB Registered</div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SERVICES
+     ========================================================= -->
+<section class="section services" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Services</span>
+      <h2 class="section-title">Engineered to perform. <br/>Built to endure.</h2>
+      <p class="section-sub">Six specialized practice areas, one integrated team — from concept and design through procurement, construction, and operations support.</p>
+    </div>
+
+    <div class="services-grid reveal-stagger">
+      <article class="service-card" tabindex="0">
+        <span class="num">01</span>
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22h20"/><path d="M3 22V8l9-6 9 6v14"/><path d="M9 22V12h6v10"/><path d="M9 6h6"/></svg>
+        </div>
+        <h3>Civil Engineering</h3>
+        <p>Structural design, geotechnical analysis, and turnkey civil works for commercial, industrial, and public sector developments.</p>
+        <span class="link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+      </article>
+
+      <article class="service-card" tabindex="0">
+        <span class="num">02</span>
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M9 14h6"/><path d="M9 17h3"/></svg>
+        </div>
+        <h3>Construction Management</h3>
+        <p>End-to-end coordination of contractors, schedules, costs, safety, and quality across complex multi-trade construction programs.</p>
+        <span class="link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+      </article>
+
+      <article class="service-card" tabindex="0">
+        <span class="num">03</span>
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8"/><path d="M19 20V8"/><path d="M5 8 2 4h20l-3 4"/><path d="M9 20v-6h6v6"/><path d="M9 8v4"/><path d="M15 8v4"/></svg>
+        </div>
+        <h3>Infrastructure Development</h3>
+        <p>Roads, bridges, drainage, water and power infrastructure — engineered for resilience and built to international benchmarks.</p>
+        <span class="link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+      </article>
+
+      <article class="service-card" tabindex="0">
+        <span class="num">04</span>
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="4" y="9" width="16" height="12" rx="2"/><path d="M12 14v3"/></svg>
+        </div>
+        <h3>Project Consulting</h3>
+        <p>Feasibility, planning, risk management, and technical advisory — independent expertise to de-risk decisions at every stage.</p>
+        <span class="link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+      </article>
+
+      <article class="service-card" tabindex="0">
+        <span class="num">05</span>
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 21V9"/><path d="m6 9 6-7 6 7"/><path d="M5 13h14"/><circle cx="12" cy="15.5" r="1.5"/></svg>
+        </div>
+        <h3>Oil &amp; Gas Facilities</h3>
+        <p>Pipeline engineering, terminal construction, mechanical installations, and maintenance for upstream and midstream operations.</p>
+        <span class="link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+      </article>
+
+      <article class="service-card" tabindex="0">
+        <span class="num">06</span>
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8-3 3-3-3 3 8z"/><path d="M11 18H5a2 2 0 0 1-2-2V7"/><path d="M21 16v3a2 2 0 0 1-2 2h-3"/><circle cx="6" cy="6" r="2"/></svg>
+        </div>
+        <h3>Procurement</h3>
+        <p>Strategic sourcing, vendor qualification, logistics, and quality control for materials and equipment — locally and globally.</p>
+        <span class="link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     WHY CHOOSE US
+     ========================================================= -->
+<section class="section why" id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why Choose Us</span>
+      <h2 class="section-title">The Rafayyl advantage.</h2>
+      <p class="section-sub">Four principles that define how we engineer, build, and deliver every project.</p>
+    </div>
+    <div class="why-grid reveal-stagger">
+      <div class="why-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h4>Uncompromising Safety</h4>
+        <p>Zero-harm culture led by certified HSE practices, regular audits, and continuous training at every site.</p>
+      </div>
+      <div class="why-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h4>Quality Assurance</h4>
+        <p>ISO-aligned QA/QC processes verify every weld, pour, and assembly against international standards.</p>
+      </div>
+      <div class="why-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h4>On-Time Delivery</h4>
+        <p>Disciplined planning, lean execution, and proactive risk management keep projects on schedule.</p>
+      </div>
+      <div class="why-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></div>
+        <h4>Integrated Expertise</h4>
+        <p>One accountable team across engineering, procurement, and construction — no handoffs, no blind spots.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PROJECTS
+     ========================================================= -->
+<section class="section projects" id="projects">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Selected Work</span>
+      <h2 class="section-title">Projects that shape skylines.</h2>
+      <p class="section-sub">A glimpse into the work our team is proud to deliver — from infrastructure to industrial.</p>
+    </div>
+
+    <div class="filters reveal" role="tablist" aria-label="Project filters">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="civil">Civil</button>
+      <button class="filter-btn" data-filter="infra">Infrastructure</button>
+      <button class="filter-btn" data-filter="oil">Oil &amp; Gas</button>
+      <button class="filter-btn" data-filter="consult">Consulting</button>
+    </div>
+
+    <div class="grid" id="grid">
+      <div class="grid-item tall" data-cat="civil">
+        <div class="visual v1"></div>
+        <div class="overlay"></div>
+        <div class="meta">
+          <span class="cat">Civil Engineering</span>
+          <h4>Lagos Marina Tower</h4>
+          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Lagos · Nigeria</div>
+        </div>
+      </div>
+      <div class="grid-item" data-cat="infra">
+        <div class="visual v2"></div>
+        <div class="overlay"></div>
+        <div class="meta">
+          <span class="cat">Infrastructure</span>
+          <h4>Abuja Bypass Expressway</h4>
+          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>FCT Abuja</div>
+        </div>
+      </div>
+      <div class="grid-item wide" data-cat="oil">
+        <div class="visual v3"></div>
+        <div class="overlay"></div>
+        <div class="meta">
+          <span class="cat">Oil &amp; Gas</span>
+          <h4>Port Harcourt Terminal Upgrade</h4>
+          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Rivers State</div>
+        </div>
+      </div>
+      <div class="grid-item" data-cat="consult">
+        <div class="visual v4"></div>
+        <div class="overlay"></div>
+        <div class="meta">
+          <span class="cat">Consulting</span>
+          <h4>Kano Industrial Park Master Plan</h4>
+          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Kano</div>
+        </div>
+      </div>
+      <div class="grid-item" data-cat="civil">
+        <div class="visual v5"></div>
+        <div class="overlay"></div>
+        <div class="meta">
+          <span class="cat">Civil Engineering</span>
+          <h4>Lekki Coastal Bridge</h4>
+          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Lagos</div>
+        </div>
+      </div>
+      <div class="grid-item" data-cat="infra">
+        <div class="visual v6"></div>
+        <div class="overlay"></div>
+        <div class="meta">
+          <span class="cat">Infrastructure</span>
+          <h4>Cross River Water Scheme</h4>
+          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Cross River</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     TESTIMONIALS
+     ========================================================= -->
+<section class="section testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Client Voices</span>
+      <h2 class="section-title">Trusted by leaders <br/>across industries.</h2>
+    </div>
+
+    <div class="t-track reveal" id="tTrack">
+      <div class="t-card active">
+        <div class="quote-ic">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a4 4 0 0 1-4 4v2a6 6 0 0 0 6-6V7zm12 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a4 4 0 0 1-4 4v2a6 6 0 0 0 6-6V7z"/></svg>
+        </div>
+        <blockquote>Rafayyl's team brought a level of discipline and technical depth that's rare in the market. They closed out our terminal upgrade two weeks ahead of schedule — without compromising safety or quality.</blockquote>
+        <div class="author">
+          <div class="avatar">AO</div>
+          <div class="who">
+            <div class="name">Adebola Okonkwo</div>
+            <div class="role">Project Director · Petroleum Holdings</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="quote-ic">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a4 4 0 0 1-4 4v2a6 6 0 0 0 6-6V7zm12 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a4 4 0 0 1-4 4v2a6 6 0 0 0 6-6V7z"/></svg>
+        </div>
+        <blockquote>From feasibility through commissioning, Rafayyl Engineering became a true partner. Their procurement intelligence alone saved us significant time and cost on a complex multi-trade build.</blockquote>
+        <div class="author">
+          <div class="avatar">FI</div>
+          <div class="who">
+            <div class="name">Fatima Ibrahim</div>
+            <div class="role">Head of Infrastructure · Northern Development</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="quote-ic">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a4 4 0 0 1-4 4v2a6 6 0 0 0 6-6V7zm12 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a4 4 0 0 1-4 4v2a6 6 0 0 0 6-6V7z"/></svg>
+        </div>
+        <blockquote>The clarity of their reporting and the calibre of their site supervision team set a new benchmark for us. A construction partner we'll keep working with for years.</blockquote>
+        <div class="author">
+          <div class="avatar">CN</div>
+          <div class="who">
+            <div class="name">Chinedu Nwosu</div>
+            <div class="role">Managing Director · Coastal Estates Ltd</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-arrows">
+        <button class="t-arrow prev" id="tPrev" aria-label="Previous testimonial">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="t-arrow next" id="tNext" aria-label="Next testimonial">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="t-nav" id="tNav" role="tablist">
+      <button class="t-dot active" data-i="0" aria-label="Go to testimonial 1"></button>
+      <button class="t-dot" data-i="1" aria-label="Go to testimonial 2"></button>
+      <button class="t-dot" data-i="2" aria-label="Go to testimonial 3"></button>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CONTACT
+     ========================================================= -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Get in Touch</span>
+      <h2 class="section-title">Let's build something <br/>extraordinary.</h2>
+      <p class="section-sub">Tell us about your project and our team will respond within one business day.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Speak with our team</h3>
+        <p>Whether you're planning a new development or evaluating a major program, we're ready to listen, advise, and execute.</p>
+        <ul class="ci-list">
+          <li>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="k">Head Office</div><div class="v">Lagos, Federal Republic of Nigeria</div></div>
+          </li>
+          <li>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><div class="k">Phone</div><div class="v">+234 800 000 0000</div></div>
+          </li>
+          <li>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div>
+            <div><div class="k">Email</div><div class="v">contact@rafayyl.com</div></div>
+          </li>
+          <li>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div><div class="k">Working Hours</div><div class="v">Mon — Fri · 08:00 — 18:00</div></div>
+          </li>
+        </ul>
+        <div class="social">
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+          <a href="#" aria-label="X / Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.407 24 24 23.407 24 22.676V1.325C24 .593 23.407 0 22.675 0z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.38c-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.86 5.86 0 0 0-2.13 1.38A5.86 5.86 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.73 1.46 1.38 2.13a5.86 5.86 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.86 5.86 0 0 0 2.13-1.38 5.86 5.86 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 0 0-1.38-2.13A5.86 5.86 0 0 0 19.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a>
+        </div>
+      </div>
+
+      <form class="form-wrap reveal" id="contactForm" novalidate>
+        <h3>Project Inquiry</h3>
+        <p>Share a few details and we'll be in touch with a tailored response.</p>
+        <div class="form-row">
+          <div class="field">
+            <label for="fName">Full Name</label>
+            <input id="fName" name="fName" type="text" placeholder="Adebayo Lawal" required />
+          </div>
+          <div class="field">
+            <label for="fEmail">Email Address</label>
+            <input id="fEmail" name="fEmail" type="email" placeholder="you@company.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="fPhone">Phone</label>
+            <input id="fPhone" name="fPhone" type="tel" placeholder="+234 ..." />
+          </div>
+          <div class="field">
+            <label for="fService">Service</label>
+            <select id="fService" name="fService" required>
+              <option value="">Select a service</option>
+              <option>Civil Engineering</option>
+              <option>Construction Management</option>
+              <option>Infrastructure Development</option>
+              <option>Project Consulting</option>
+              <option>Oil &amp; Gas Facilities</option>
+              <option>Procurement</option>
+            </select>
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:24px;">
+          <label for="fMessage">Project Details</label>
+          <textarea id="fMessage" name="fMessage" placeholder="Tell us about scope, location, and timeline..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+          Send Inquiry
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <div class="map reveal" aria-label="Office location map">
+      <div class="pulse"></div>
+      <div class="pin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Rafayyl Engineering HQ · Lagos, Nigeria
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="brand-block">
+        <a href="#home" class="brand">
+          <div class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h6"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">RAFAYYL</span>
+            <span class="brand-tag">Engineering · Est. 2024</span>
+          </div>
+        </a>
+        <p>Engineering and construction excellence — delivered with integrity, executed with precision, and built to endure.</p>
+        <div class="rc">
+          <span>RC Number</span>
+          <strong>7451347</strong>
+        </div>
+      </div>
+
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Civil Engineering</a></li>
+          <li><a href="#services">Construction Mgmt</a></li>
+          <li><a href="#services">Infrastructure</a></li>
+          <li><a href="#services">Oil &amp; Gas</a></li>
+          <li><a href="#services">Procurement</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-news">
+        <h5>Newsletter</h5>
+        <p style="font-size:14px;color:var(--mute);margin-bottom:16px;">Project insights and company updates, straight to your inbox.</p>
+        <input type="email" placeholder="your@email.com" aria-label="Email for newsletter" />
+        <button type="button">Subscribe</button>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2024 Rafayyl Engineering and Construction Limited. All rights reserved.</div>
+      <div class="links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">HSE Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* =========================================================
+     SCRIPT
+     ========================================================= */
+  (function(){
+    const $ = (s,c=document)=>c.querySelector(s);
+    const $$ = (s,c=document)=>Array.from(c.querySelectorAll(s));
+
+    /* Navbar scroll state */
+    const nav = $('#nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 30);
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+
+    /* Mobile menu */
+    const menuToggle = $('#menuToggle');
+    const navLinks = $('#navLinks');
+    menuToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuToggle.classList.toggle('open', open);
+      menuToggle.setAttribute('aria-expanded', open);
+    });
+    $$('.nav-link').forEach(l => l.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', false);
+    }));
+
+    /* Particles */
+    const pBox = $('#particles');
+    const PCOUNT = 28;
+    for (let i = 0; i < PCOUNT; i++){
+      const p = document.createElement('span');
+      p.className = 'particle';
+      p.style.left = Math.random()*100 + '%';
+      p.style.animationDelay = (Math.random()*14) + 's';
+      p.style.animationDuration = (10 + Math.random()*10) + 's';
+      const s = 2 + Math.random()*3;
+      p.style.width = s+'px'; p.style.height = s+'px';
+      p.style.opacity = (.4 + Math.random()*.5).toString();
+      pBox.appendChild(p);
+    }
+
+    /* Reveal on scroll */
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if (e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+    $$('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+
+    /* Counters */
+    const counters = $$('[data-count]');
+    const counterIO = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = +el.dataset.count;
+        const suffix = el.dataset.suffix || '';
+        const dur = 1600;
+        const start = performance.now();
+        function step(now){
+          const t = Math.min(1, (now-start)/dur);
+          const eased = 1 - Math.pow(1-t, 3);
+          el.textContent = Math.round(target * eased) + suffix;
+          if (t < 1) requestAnimationFrame(step);
+          else el.textContent = target + suffix;
+        }
+        requestAnimationFrame(step);
+        counterIO.unobserve(el);
+      });
+    },{threshold:0.4});
+    counters.forEach(c => counterIO.observe(c));
+
+    /* Service cards: spotlight follow */
+    $$('.service-card').forEach(card=>{
+      card.addEventListener('mousemove', e=>{
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%');
+        card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
+      });
+    });
+
+    /* Project filters */
+    const filterBtns = $$('.filter-btn');
+    const items = $$('.grid-item');
+    filterBtns.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        filterBtns.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        items.forEach(it=>{
+          const match = (f === 'all' || it.dataset.cat === f);
+          it.classList.toggle('hide', !match);
+        });
+      });
+    });
+
+    /* Testimonials */
+    const cards = $$('.t-card');
+    const dots = $$('.t-dot');
+    let cur = 0;
+    function go(i){
+      cur = (i + cards.length) % cards.length;
+      cards.forEach((c,k)=>c.classList.toggle('active', k===cur));
+      dots.forEach((d,k)=>d.classList.toggle('active', k===cur));
+    }
+    $('#tPrev').addEventListener('click', ()=>go(cur-1));
+    $('#tNext').addEventListener('click', ()=>go(cur+1));
+    dots.forEach(d => d.addEventListener('click', ()=>go(+d.dataset.i)));
+    let timer = setInterval(()=>go(cur+1), 7000);
+    $('#tTrack').addEventListener('mouseenter', ()=>clearInterval(timer));
+    $('#tTrack').addEventListener('mouseleave', ()=>{ timer = setInterval(()=>go(cur+1), 7000); });
+
+    /* Form */
+    $('#contactForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const orig = btn.innerHTML;
+      btn.innerHTML = 'Sending...';
+      btn.disabled = true;
+      setTimeout(()=>{
+        btn.innerHTML = '✓ Sent — We\'ll be in touch';
+        e.target.reset();
+        setTimeout(()=>{ btn.innerHTML = orig; btn.disabled = false; }, 2800);
+      }, 900);
+    });
+
+    /* Parallax hero */
+    const heroBg = $('.hero-bg');
+    const skyline = $('.hero-bg .skyline');
+    const city = $('.hero-bg .city');
+    const city2 = $('.hero-bg .city2');
+    const crane = $('.hero-bg .crane');
+    const glow = $('.hero-bg .glow');
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches){
+      window.addEventListener('scroll', ()=>{
+        const y = window.scrollY;
+        if (y > window.innerHeight) return;
+        if (city) city.style.transform = `translateY(${y*0.18}px)`;
+        if (city2) city2.style.transform = `translateY(${y*0.10}px)`;
+        if (skyline) skyline.style.transform = `translateY(${y*0.05}px)`;
+        if (crane) crane.style.transform = `translateY(${y*0.22}px) rotate(${y*0.01}deg)`;
+        if (glow) glow.style.transform = `translateX(-50%) translateY(${y*0.3}px)`;
+      }, {passive:true});
+    }
+  })();
+</script>
+</body>
+</html>

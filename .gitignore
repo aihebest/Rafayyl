@@ -1,0 +1,36 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Vercel
+.vercel/
+
+# Node (if added later)
+node_modules/
+npm-debug.log*
+
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Build output (if added later)
+/dist/
+/build/
+/out/
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# Claude session files
+.claude/

@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>Admin Panel — Rafayyl Engineering</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy-900:#050B16;--navy-800:#0A1628;--navy-700:#0F1F36;--navy-600:#15294A;
+  --gold-300:#E6CB80;--gold-400:#D4B764;--gold-500:#C9A84C;--gold-600:#A8893A;
+  --white:#fff;--mute:#B7C0D0;--text:#D6DDEA;
+  --success:#22C55E;--error:#EF4444;--warning:#F59E0B;
+  --glass:rgba(255,255,255,.06);--border:rgba(201,168,76,.2);
+  --radius:16px;--ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;
+  color:var(--text);background:var(--navy-800);overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;color:var(--white);margin:0 0 .5em;line-height:1.2;}
+a{color:var(--gold-500);text-decoration:none;}
+a:hover{color:var(--gold-300);}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+input,textarea,select{font-family:inherit;}
+::selection{background:var(--gold-500);color:var(--navy-900);}
+:focus-visible{outline:2px solid var(--gold-400);outline-offset:3px;border-radius:4px;}
+
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(1100px 700px at 12% -10%,rgba(201,168,76,.08),transparent 60%),
+  linear-gradient(180deg,var(--navy-900) 0%,var(--navy-800) 100%);}
+
+/* ---- LOGIN SCREEN ---- */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+.login-box{
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:24px;padding:48px 40px;max-width:420px;width:100%;
+  backdrop-filter:blur(20px);
+}
+.login-logo{display:flex;align-items:center;gap:14px;margin-bottom:32px;justify-content:center;}
+.login-logo .mark{
+  width:44px;height:44px;border-radius:12px;
+  background:linear-gradient(135deg,var(--gold-500),var(--gold-700));
+  display:grid;place-items:center;color:var(--navy-900);
+}
+.login-logo .mark svg{width:22px;height:22px;}
+.login-logo .name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);}
+.login-logo .tag{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-500);}
+
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+.field label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-500);font-weight:600;}
+.field input,.field select,.field textarea{
+  padding:12px 14px;border-radius:12px;border:1.5px solid rgba(255,255,255,.1);
+  background:rgba(10,22,40,.7);color:var(--white);font-size:14px;
+  transition:border-color .2s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--gold-500);background:rgba(10,22,40,.9);
+  box-shadow:0 0 0 4px rgba(201,168,76,.12);
+}
+.field select option{background:var(--navy-800);color:var(--white);}
+
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 22px;border-radius:12px;font-weight:600;font-size:13.5px;
+  cursor:pointer;transition:.25s var(--ease);
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold-500),var(--gold-600));
+  color:var(--navy-900);box-shadow:0 8px 22px rgba(201,168,76,.3);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(201,168,76,.45);}
+.btn-ghost{background:rgba(255,255,255,.05);color:var(--white);border:1px solid rgba(255,255,255,.12);}
+.btn-ghost:hover{background:rgba(255,255,255,.1);}
+.btn-danger{background:rgba(239,68,68,.15);color:#EF4444;border:1px solid rgba(239,68,68,.3);}
+.btn-danger:hover{background:rgba(239,68,68,.25);}
+.btn-sm{padding:7px 14px;font-size:12px;border-radius:9px;}
+.btn-full{width:100%;justify-content:center;}
+
+.err-msg{color:#EF4444;font-size:12px;margin-top:6px;}
+
+/* ---- LAYOUT ---- */
+.app{display:none;min-height:100vh;}
+.sidebar{
+  width:260px;background:rgba(5,11,22,.8);border-right:1px solid var(--border);
+  position:fixed;top:0;left:0;bottom:0;z-index:50;
+  display:flex;flex-direction:column;backdrop-filter:blur(20px);
+}
+.sidebar-logo{padding:24px 20px;border-bottom:1px solid var(--border);}
+.sidebar-logo .logo-row{display:flex;align-items:center;gap:12px;}
+.sidebar-logo .mark{width:38px;height:38px;border-radius:10px;
+  background:linear-gradient(135deg,var(--gold-500),var(--gold-700));
+  display:grid;place-items:center;color:var(--navy-900);}
+.sidebar-logo .mark svg{width:18px;height:18px;}
+.sidebar-logo .name{font-family:'Playfair Display',serif;font-size:15px;color:var(--white);font-weight:700;}
+.sidebar-logo .tag{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-500);}
+.sidebar-role{margin-top:8px;padding:6px 12px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);
+  border-radius:999px;font-size:11px;color:var(--gold-400);font-weight:600;letter-spacing:.1em;display:inline-block;}
+
+.nav-section{padding:10px 12px 4px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(183,192,208,.4);font-weight:600;}
+.sidebar nav{flex:1;overflow-y:auto;padding:8px 12px;}
+.nav-item{
+  display:flex;align-items:center;gap:12px;padding:11px 14px;
+  border-radius:12px;color:var(--mute);font-size:13.5px;font-weight:500;
+  cursor:pointer;transition:.2s var(--ease);margin-bottom:2px;
+}
+.nav-item svg{width:17px;height:17px;flex:none;}
+.nav-item:hover{background:rgba(255,255,255,.05);color:var(--white);}
+.nav-item.active{background:rgba(201,168,76,.12);color:var(--gold-400);border:1px solid rgba(201,168,76,.2);}
+.sidebar-footer{padding:16px 12px;border-top:1px solid var(--border);}
+.user-info{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04);}
+.user-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold-500),var(--gold-700));
+  display:grid;place-items:center;font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--navy-900);}
+.user-name{font-size:13px;font-weight:600;color:var(--white);}
+.user-role{font-size:11px;color:var(--mute);}
+
+.main{margin-left:260px;min-height:100vh;}
+.topbar{
+  height:64px;background:rgba(10,22,40,.7);border-bottom:1px solid var(--border);
+  backdrop-filter:blur(16px);position:sticky;top:0;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;padding:0 28px;
+}
+.page-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);font-weight:700;}
+.topbar-actions{display:flex;align-items:center;gap:12px;}
+.content{padding:32px 28px;}
+
+/* ---- CARDS & STATS ---- */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:32px;}
+.stat-box{
+  padding:24px;border-radius:var(--radius);background:var(--glass);border:1px solid var(--border);
+  backdrop-filter:blur(14px);position:relative;overflow:hidden;
+  transition:transform .3s var(--ease),border-color .3s var(--ease);
+}
+.stat-box:hover{transform:translateY(-4px);border-color:rgba(201,168,76,.35);}
+.stat-box::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold-500),transparent);
+  transform:scaleX(0);transform-origin:left;transition:.4s var(--ease);}
+.stat-box:hover::before{transform:scaleX(1);}
+.stat-box .ico{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;
+  background:rgba(201,168,76,.12);color:var(--gold-400);margin-bottom:14px;}
+.stat-box .ico svg{width:20px;height:20px;}
+.stat-box .val{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;
+  background:linear-gradient(135deg,var(--white),var(--gold-300));
+  -webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;}
+.stat-box .lbl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-top:6px;}
+.stat-box .change{font-size:11px;margin-top:8px;}
+.stat-box .change.up{color:var(--success);}
+.stat-box .change.down{color:var(--error);}
+
+/* ---- TABLE ---- */
+.card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.card-head{
+  padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.card-head h3{font-size:1.05rem;margin:0;}
+.card-search{
+  display:flex;align-items:center;gap:8px;padding:8px 14px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;transition:.2s;
+}
+.card-search:focus-within{border-color:var(--gold-500);}
+.card-search svg{width:14px;height:14px;color:var(--mute);flex:none;}
+.card-search input{background:transparent;border:none;outline:none;color:var(--white);font-size:13px;width:180px;}
+.card-search input::placeholder{color:rgba(183,192,208,.4);}
+
+table{width:100%;border-collapse:collapse;}
+thead th{padding:12px 16px;text-align:left;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-500);font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);
+  font-family:'Inter',sans-serif;}
+tbody tr{transition:background .2s;}
+tbody tr:hover{background:rgba(255,255,255,.03);}
+tbody td{padding:14px 16px;color:var(--text);font-size:13.5px;border-bottom:1px solid rgba(255,255,255,.04);}
+tbody tr:last-child td{border-bottom:none;}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.06em;}
+.badge-success{background:rgba(34,197,94,.15);color:#22C55E;border:1px solid rgba(34,197,94,.25);}
+.badge-warning{background:rgba(245,158,11,.15);color:#F59E0B;border:1px solid rgba(245,158,11,.25);}
+.badge-info{background:rgba(201,168,76,.1);color:var(--gold-400);border:1px solid rgba(201,168,76,.2);}
+.badge-muted{background:rgba(255,255,255,.06);color:var(--mute);border:1px solid rgba(255,255,255,.1);}
+.td-actions{display:flex;gap:6px;}
+
+/* ---- FORM PANEL ---- */
+.form-panel{
+  background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px;margin-bottom:24px;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-actions{display:flex;gap:12px;margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);}
+.field textarea{resize:vertical;min-height:120px;}
+.hidden{display:none!important;}
+
+/* ---- ALERT ---- */
+.alert{padding:14px 18px;border-radius:12px;margin-bottom:20px;font-size:13.5px;}
+.alert-success{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#22C55E;}
+.alert-error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#EF4444;}
+
+/* ---- TABS ---- */
+.tabs{display:flex;gap:4px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:24px;}
+.tab{padding:11px 20px;font-size:13px;font-weight:500;color:var(--mute);cursor:pointer;
+  border-bottom:2px solid transparent;transition:.2s var(--ease);margin-bottom:-1px;}
+.tab:hover{color:var(--white);}
+.tab.active{color:var(--gold-400);border-bottom-color:var(--gold-500);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width:900px){
+  .sidebar{width:220px;}
+  .main{margin-left:220px;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .form-row{grid-template-columns:1fr;}
+}
+@media (max-width:640px){
+  .sidebar{transform:translateX(-100%);transition:.3s var(--ease);}
+  .sidebar.open{transform:translateX(0);}
+  .main{margin-left:0;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  table{font-size:12px;}
+  tbody td{padding:10px 12px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     LOGIN SCREEN
+     ============================================================ -->
+<div class="login-wrap" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div style="text-align:center;">
+        <div style="display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:8px;">
+          <div class="mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h6"/>
+            </svg>
+          </div>
+          <div>
+            <div class="name">RAFAYYL</div>
+            <div class="tag">Admin Panel</div>
+          </div>
+        </div>
+        <p style="color:var(--mute);font-size:13px;margin:16px 0 0;">Secure administration portal — authorised personnel only.</p>
+      </div>
+    </div>
+    <form id="loginForm" novalidate>
+      <div class="field">
+        <label for="loginUser">Username</label>
+        <input id="loginUser" type="text" placeholder="admin" autocomplete="username" required />
+      </div>
+      <div class="field">
+        <label for="loginPass">Password</label>
+        <input id="loginPass" type="password" placeholder="••••••••" autocomplete="current-password" required />
+      </div>
+      <div class="err-msg hidden" id="loginErr">Invalid credentials. Please try again.</div>
+      <button type="submit" class="btn btn-primary btn-full" style="margin-top:8px;">
+        Sign In
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+    </form>
+    <p style="text-align:center;color:var(--mute);font-size:12px;margin-top:20px;">
+      Default: admin / rafayyl2024 — Change after first login.
+    </p>
+  </div>
+</div>
+
+<!-- ============================================================
+     ADMIN APP
+     ============================================================ -->
+<div class="app" id="adminApp">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-row">
+        <div class="mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h6"/>
+          </svg>
+        </div>
+        <div>
+          <div class="name">RAFAYYL</div>
+          <div class="tag" style="font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-500);">Admin Panel</div>
+        </div>
+      </div>
+      <span class="sidebar-role">Administrator</span>
+    </div>
+
+    <nav>
+      <div class="nav-section">Main</div>
+      <div class="nav-item active" data-page="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </div>
+      <div class="nav-item" data-page="inquiries">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        Inquiries
+        <span style="margin-left:auto;background:var(--gold-500);color:var(--navy-900);border-radius:999px;padding:2px 7px;font-size:10px;font-weight:700;" id="inquiryBadge">0</span>
+      </div>
+
+      <div class="nav-section">Content</div>
+      <div class="nav-item" data-page="projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/></svg>
+        Projects
+      </div>
+      <div class="nav-item" data-page="services">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="4" y="9" width="16" height="12" rx="2"/></svg>
+        Services
+      </div>
+      <div class="nav-item" data-page="blog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Blog Posts
+      </div>
+      <div class="nav-item" data-page="testimonials">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Testimonials
+      </div>
+      <div class="nav-item" data-page="careers">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        Career Listings
+      </div>
+
+      <div class="nav-section">System</div>
+      <div class="nav-item" data-page="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        Settings
+      </div>
+      <div class="nav-item" id="logoutBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Sign Out
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <div class="user-avatar" id="userAvatar">A</div>
+        <div>
+          <div class="user-name" id="userName">Administrator</div>
+          <div class="user-role">Full Access</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="main">
+    <div class="topbar">
+      <div class="page-title" id="pageTitle">Dashboard</div>
+      <div class="topbar-actions">
+        <a href="index.html" class="btn btn-ghost btn-sm" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View Site
+        </a>
+      </div>
+    </div>
+
+    <div class="content" id="pageContent">
+      <!-- Content injected by JS -->
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+const $ = (s,c=document)=>c.querySelector(s);
+const $$ = (s,c=document)=>Array.from(c.querySelectorAll(s));
+
+/* =============================================
+   LOCAL STORAGE DATA STORE
+   ============================================= */
+const STORE_KEY = 'rafayyl_admin_data';
+const DEFAULT_CREDS = {username:'admin', password:'rafayyl2024'};
+
+function getStore() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }
+  catch { return {}; }
+}
+function saveStore(data) { localStorage.setItem(STORE_KEY, JSON.stringify(data)); }
+
+function initStore() {
+  const s = getStore();
+  if (!s.projects) s.projects = [
+    {id:1, title:'Lagos Marina Tower', category:'Civil Engineering', location:'Lagos, Nigeria', client:'Cornerstone Developments', year:'2024', status:'Completed', budget:'₦850M', featured:true},
+    {id:2, title:'Abuja Bypass Expressway', category:'Infrastructure', location:'FCT Abuja', client:'Federal Ministry of Works', year:'2024', status:'Completed', budget:'₦1.2B', featured:false},
+    {id:3, title:'Port Harcourt Terminal Upgrade', category:'Oil & Gas', location:'Rivers State', client:'Petroleum Holdings', year:'2024', status:'Completed', budget:'₦3.4B', featured:true},
+  ];
+  if (!s.services) s.services = [
+    {id:1, title:'Civil Engineering', desc:'Structural design, geotechnical analysis, and turnkey civil works.', active:true},
+    {id:2, title:'Construction Management', desc:'End-to-end coordination of contractors, schedules, costs, and safety.', active:true},
+    {id:3, title:'Infrastructure Development', desc:'Roads, bridges, drainage, water and power infrastructure.', active:true},
+    {id:4, title:'Oil & Gas Facilities', desc:'Pipeline engineering, terminal construction, and mechanical installations.', active:true},
+    {id:5, title:'Project Consulting', desc:'Feasibility, planning, risk management, and technical advisory.', active:true},
+    {id:6, title:'Procurement Services', desc:'Strategic sourcing, vendor qualification, logistics, and quality control.', active:true},
+  ];
+  if (!s.inquiries) s.inquiries = [
+    {id:1, name:'John Adeyemi', email:'john@example.com', phone:'+234 801 234 5678', service:'Civil Engineering', budget:'₦250M — ₦1B', message:'We need a commercial building in Victoria Island.', date:'2025-06-01', status:'New'},
+    {id:2, name:'Amaka Obi', email:'amaka@corp.ng', phone:'+234 802 345 6789', service:'Infrastructure Development', budget:'₦1B — ₦5B', message:'Road rehabilitation for 15km in Delta State.', date:'2025-05-28', status:'In Progress'},
+  ];
+  if (!s.testimonials) s.testimonials = [
+    {id:1, name:'Adebola Okonkwo', role:'Project Director', company:'Petroleum Holdings', quote:'Rafayyl\'s team brought a level of discipline and technical depth that\'s rare.', rating:5, active:true},
+    {id:2, name:'Fatima Ibrahim', role:'Head of Infrastructure', company:'Northern Development Corp.', quote:'From feasibility through commissioning, Rafayyl became a true partner.', rating:5, active:true},
+  ];
+  if (!s.careers) s.careers = [
+    {id:1, title:'Site Engineer (Civil)', department:'Civil Engineering', location:'Lagos', type:'Full-Time', active:true},
+    {id:2, title:'HSE Officer', department:'Health, Safety & Environment', location:'Port Harcourt', type:'Full-Time', active:true},
+    {id:3, title:'Procurement Officer', department:'Procurement', location:'Lagos', type:'Full-Time', active:true},
+  ];
+  if (!s.blog) s.blog = [
+    {id:1, title:"Nigeria's Infrastructure Deficit: A ₦21 Trillion Opportunity", category:'Infrastructure', date:'2025-06-01', status:'Published'},
+    {id:2, title:'EPC Contracting in the Niger Delta: Lessons from the Field', category:'Oil & Gas', date:'2025-05-28', status:'Published'},
+  ];
+  if (!s.creds) s.creds = DEFAULT_CREDS;
+  saveStore(s);
+  return s;
+}
+
+let store = initStore();
+let currentPage = 'dashboard';
+let currentUser = null;
+
+/* =============================================
+   AUTH
+   ============================================= */
+const loginForm = $('#loginForm');
+loginForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const user = $('#loginUser').value.trim();
+  const pass = $('#loginPass').value;
+  const err = $('#loginErr');
+  if (user === store.creds.username && pass === store.creds.password) {
+    currentUser = user;
+    $('#loginScreen').style.display = 'none';
+    $('#adminApp').style.display = 'flex';
+    $('#userName').textContent = user.charAt(0).toUpperCase() + user.slice(1);
+    $('#userAvatar').textContent = user.charAt(0).toUpperCase();
+    err.classList.add('hidden');
+    renderPage('dashboard');
+  } else {
+    err.classList.remove('hidden');
+  }
+});
+
+$('#logoutBtn').addEventListener('click', () => {
+  currentUser = null;
+  $('#adminApp').style.display = 'none';
+  $('#loginScreen').style.display = 'flex';
+  $('#loginForm').reset();
+});
+
+/* =============================================
+   NAVIGATION
+   ============================================= */
+$$('.nav-item[data-page]').forEach(item => {
+  item.addEventListener('click', () => {
+    $$('.nav-item').forEach(n => n.classList.remove('active'));
+    item.classList.add('active');
+    renderPage(item.dataset.page);
+  });
+});
+
+function renderPage(page) {
+  currentPage = page;
+  const titles = {
+    dashboard:'Dashboard Overview', inquiries:'Project Inquiries',
+    projects:'Portfolio Manager', services:'Services Manager',
+    blog:'Blog & Insights', testimonials:'Testimonials',
+    careers:'Career Listings', settings:'System Settings'
+  };
+  $('#pageTitle').textContent = titles[page] || page;
+  const renderers = {
+    dashboard: renderDashboard, inquiries: renderInquiries,
+    projects: renderProjects, services: renderServices,
+    blog: renderBlog, testimonials: renderTestimonials,
+    careers: renderCareers, settings: renderSettings
+  };
+  const fn = renderers[page];
+  if (fn) fn();
+}
+
+/* =============================================
+   DASHBOARD
+   ============================================= */
+function renderDashboard() {
+  store = getStore();
+  const newInq = store.inquiries.filter(i => i.status === 'New').length;
+  $('#inquiryBadge').textContent = newInq;
+  $('#pageContent').innerHTML = `
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/></svg></div>
+        <div class="val">${store.projects.length}</div>
+        <div class="lbl">Total Projects</div>
+        <div class="change up">↑ Active portfolio</div>
+      </div>
+      <div class="stat-box">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div>
+        <div class="val">${store.inquiries.length}</div>
+        <div class="lbl">Total Inquiries</div>
+        <div class="change up">${newInq} new unread</div>
+      </div>
+      <div class="stat-box">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        <div class="val">${store.careers.filter(c=>c.active).length}</div>
+        <div class="lbl">Open Positions</div>
+        <div class="change up">Hiring now</div>
+      </div>
+      <div class="stat-box">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="val">${store.testimonials.filter(t=>t.active).length}</div>
+        <div class="lbl">Active Testimonials</div>
+        <div class="change up">Client approved</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h3>Recent Inquiries</h3><button class="btn btn-ghost btn-sm" onclick="renderPage('inquiries')">View All</button></div>
+      <table>
+        <thead><tr><th>Name</th><th>Service</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody>
+          ${store.inquiries.slice(0,5).map(inq=>`
+            <tr>
+              <td><strong style="color:var(--white);">${inq.name}</strong><br><span style="color:var(--mute);font-size:12px;">${inq.email}</span></td>
+              <td>${inq.service}</td>
+              <td>${inq.date}</td>
+              <td><span class="badge ${inq.status==='New'?'badge-warning':inq.status==='In Progress'?'badge-info':'badge-success'}">${inq.status}</span></td>
+              <td><button class="btn btn-ghost btn-sm" onclick="viewInquiry(${inq.id})">View</button></td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+/* =============================================
+   INQUIRIES
+   ============================================= */
+function renderInquiries() {
+  store = getStore();
+  $('#pageContent').innerHTML = `
+    <div class="card">
+      <div class="card-head">
+        <h3>Project Inquiries (${store.inquiries.length})</h3>
+        <div class="card-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="inqSearch" placeholder="Search inquiries..." oninput="filterInquiries(this.value)"/>
+        </div>
+      </div>
+      <table id="inqTable">
+        <thead><tr><th>Name</th><th>Service</th><th>Budget</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="inqBody">
+          ${renderInquiryRows(store.inquiries)}
+        </tbody>
+      </table>
+    </div>
+    <div id="inqDetail" class="form-panel hidden" style="margin-top:24px;"></div>`;
+}
+
+function renderInquiryRows(items) {
+  return items.map(inq=>`
+    <tr id="inq-${inq.id}">
+      <td><strong style="color:var(--white);">${inq.name}</strong><br><span style="color:var(--mute);font-size:12px;">${inq.email} · ${inq.phone||''}</span></td>
+      <td>${inq.service}</td>
+      <td>${inq.budget||'—'}</td>
+      <td>${inq.date}</td>
+      <td>
+        <select onchange="updateInquiryStatus(${inq.id},this.value)" style="background:rgba(10,22,40,.7);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:5px 8px;color:var(--white);font-size:12px;">
+          ${['New','In Progress','Quoted','Won','Lost'].map(s=>`<option ${s===inq.status?'selected':''}>${s}</option>`).join('')}
+        </select>
+      </td>
+      <td>
+        <div class="td-actions">
+          <button class="btn btn-ghost btn-sm" onclick="viewInquiry(${inq.id})">View</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteInquiry(${inq.id})">Delete</button>
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+window.filterInquiries = q => {
+  const rows = store.inquiries.filter(i =>
+    i.name.toLowerCase().includes(q.toLowerCase()) ||
+    i.email.toLowerCase().includes(q.toLowerCase()) ||
+    i.service.toLowerCase().includes(q.toLowerCase())
+  );
+  $('#inqBody').innerHTML = renderInquiryRows(rows);
+};
+
+window.viewInquiry = id => {
+  const inq = store.inquiries.find(i=>i.id===id);
+  if (!inq) return;
+  const detail = $('#inqDetail');
+  detail.classList.remove('hidden');
+  detail.innerHTML = `
+    <h3 style="margin-bottom:16px;">Inquiry from ${inq.name}</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+      ${[['Email',inq.email],['Phone',inq.phone||'N/A'],['Service',inq.service],['Budget',inq.budget||'N/A'],['Date',inq.date],['Status',inq.status]].map(([k,v])=>`
+        <div style="padding:12px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;">
+          <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-500);margin-bottom:4px;">${k}</div>
+          <div style="color:var(--white);font-weight:500;">${v}</div>
+        </div>`).join('')}
+    </div>
+    <div style="padding:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;margin-bottom:16px;">
+      <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-500);margin-bottom:8px;">Message</div>
+      <p style="color:var(--text);margin:0;">${inq.message}</p>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <a href="mailto:${inq.email}?subject=Re: Your Inquiry — Rafayyl Engineering" class="btn btn-primary btn-sm">Reply via Email</a>
+      <button class="btn btn-ghost btn-sm" onclick="$('#inqDetail').classList.add('hidden')">Close</button>
+    </div>`;
+  detail.scrollIntoView({behavior:'smooth'});
+};
+
+window.updateInquiryStatus = (id, status) => {
+  store.inquiries = store.inquiries.map(i => i.id===id ? {...i, status} : i);
+  saveStore(store);
+};
+
+window.deleteInquiry = id => {
+  if (!confirm('Delete this inquiry?')) return;
+  store.inquiries = store.inquiries.filter(i=>i.id!==id);
+  saveStore(store);
+  renderInquiries();
+};
+
+/* =============================================
+   PROJECTS
+   ============================================= */
+function renderProjects() {
+  store = getStore();
+  $('#pageContent').innerHTML = `
+    <div class="tabs">
+      <div class="tab active" data-tab="list">All Projects</div>
+      <div class="tab" data-tab="add">Add New</div>
+    </div>
+    <div id="tab-list" class="tab-panel active">
+      <div class="card">
+        <div class="card-head"><h3>Projects (${store.projects.length})</h3></div>
+        <table>
+          <thead><tr><th>Title</th><th>Category</th><th>Client</th><th>Year</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${store.projects.map(p=>`
+              <tr>
+                <td><strong style="color:var(--white);">${p.title}</strong>${p.featured?'<span class="badge badge-warning" style="margin-left:8px;">Featured</span>':''}</td>
+                <td>${p.category}</td>
+                <td>${p.client}</td>
+                <td>${p.year}</td>
+                <td><span class="badge ${p.status==='Completed'?'badge-success':'badge-info'}">${p.status}</span></td>
+                <td>
+                  <div class="td-actions">
+                    <button class="btn btn-ghost btn-sm" onclick="editProject(${p.id})">Edit</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteProject(${p.id})">Delete</button>
+                  </div>
+                </td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="tab-add" class="tab-panel">
+      <div class="form-panel">
+        <h3 style="margin-bottom:20px;" id="projFormTitle">Add New Project</h3>
+        <input type="hidden" id="projId" value=""/>
+        <div class="form-row">
+          <div class="field"><label>Project Title *</label><input id="projTitle" type="text" placeholder="Project name" /></div>
+          <div class="field"><label>Category *</label>
+            <select id="projCat">
+              <option>Civil Engineering</option><option>Infrastructure</option><option>Oil & Gas</option><option>Consulting</option><option>Procurement</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Client</label><input id="projClient" type="text" placeholder="Client name" /></div>
+          <div class="field"><label>Location</label><input id="projLoc" type="text" placeholder="City, State" /></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Year</label><input id="projYear" type="text" placeholder="2024" /></div>
+          <div class="field"><label>Budget Range</label><input id="projBudget" type="text" placeholder="₦500M" /></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Status</label>
+            <select id="projStatus"><option>Completed</option><option>In Progress</option><option>Planning</option></select>
+          </div>
+          <div class="field"><label>Featured</label>
+            <select id="projFeatured"><option value="false">No</option><option value="true">Yes</option></select>
+          </div>
+        </div>
+        <div class="field"><label>Description</label><textarea id="projDesc" placeholder="Project description..."></textarea></div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="saveProject()">Save Project</button>
+          <button class="btn btn-ghost" onclick="clearProjectForm()">Clear</button>
+        </div>
+        <div id="projAlert"></div>
+      </div>
+    </div>`;
+  initTabs();
+}
+
+window.editProject = id => {
+  const p = store.projects.find(x=>x.id===id);
+  if (!p) return;
+  switchTab('tab-add');
+  $('#projFormTitle').textContent = 'Edit Project';
+  $('#projId').value = id;
+  $('#projTitle').value = p.title||'';
+  $('#projCat').value = p.category||'Civil Engineering';
+  $('#projClient').value = p.client||'';
+  $('#projLoc').value = p.location||'';
+  $('#projYear').value = p.year||'';
+  $('#projBudget').value = p.budget||'';
+  $('#projStatus').value = p.status||'Completed';
+  $('#projFeatured').value = String(p.featured||false);
+  $('#projDesc').value = p.desc||'';
+};
+
+window.saveProject = () => {
+  const title = $('#projTitle').value.trim();
+  if (!title) { showAlert('projAlert','error','Project title is required.'); return; }
+  const id = $('#projId').value;
+  const proj = {
+    id: id ? +id : Date.now(),
+    title, category: $('#projCat').value, client: $('#projClient').value,
+    location: $('#projLoc').value, year: $('#projYear').value,
+    budget: $('#projBudget').value, status: $('#projStatus').value,
+    featured: $('#projFeatured').value === 'true', desc: $('#projDesc').value
+  };
+  if (id) { store.projects = store.projects.map(p=>p.id===+id?proj:p); }
+  else { store.projects.push(proj); }
+  saveStore(store);
+  showAlert('projAlert','success', id?'Project updated.':'Project added.');
+  clearProjectForm();
+  setTimeout(()=>switchTab('tab-list'), 1000);
+  setTimeout(renderProjects, 1100);
+};
+
+window.deleteProject = id => {
+  if (!confirm('Delete this project?')) return;
+  store.projects = store.projects.filter(p=>p.id!==id);
+  saveStore(store);
+  renderProjects();
+};
+
+window.clearProjectForm = () => {
+  ['projId','projTitle','projClient','projLoc','projYear','projBudget','projDesc'].forEach(id=>{ const el=$('#'+id); if(el) el.value=''; });
+  $('#projFormTitle').textContent = 'Add New Project';
+};
+
+/* =============================================
+   SERVICES
+   ============================================= */
+function renderServices() {
+  store = getStore();
+  $('#pageContent').innerHTML = `
+    <div class="card">
+      <div class="card-head"><h3>Services (${store.services.length})</h3></div>
+      <table>
+        <thead><tr><th>Title</th><th>Description</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>
+          ${store.services.map(s=>`
+            <tr>
+              <td><strong style="color:var(--white);">${s.title}</strong></td>
+              <td style="max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${s.desc}</td>
+              <td><span class="badge ${s.active?'badge-success':'badge-muted'}">${s.active?'Active':'Hidden'}</span></td>
+              <td>
+                <button class="btn btn-ghost btn-sm" onclick="toggleService(${s.id})">${s.active?'Hide':'Show'}</button>
+              </td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+window.toggleService = id => {
+  store.services = store.services.map(s=>s.id===id?{...s,active:!s.active}:s);
+  saveStore(store);
+  renderServices();
+};
+
+/* =============================================
+   TESTIMONIALS
+   ============================================= */
+function renderTestimonials() {
+  store = getStore();
+  $('#pageContent').innerHTML = `
+    <div class="tabs">
+      <div class="tab active" data-tab="tlist">All Testimonials</div>
+      <div class="tab" data-tab="tadd">Add New</div>
+    </div>
+    <div id="tab-tlist" class="tab-panel active">
+      <div class="card">
+        <div class="card-head"><h3>Testimonials (${store.testimonials.length})</h3></div>
+        <table>
+          <thead><tr><th>Name</th><th>Company</th><th>Quote</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${store.testimonials.map(t=>`
+              <tr>
+                <td><strong style="color:var(--white);">${t.name}</strong><br><span style="color:var(--mute);font-size:12px;">${t.role}</span></td>
+                <td>${t.company}</td>
+                <td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-style:italic;">"${t.quote}"</td>
+                <td><span class="badge ${t.active?'badge-success':'badge-muted'}">${t.active?'Active':'Hidden'}</span></td>
+                <td><div class="td-actions">
+                  <button class="btn btn-ghost btn-sm" onclick="toggleTestimonial(${t.id})">${t.active?'Hide':'Show'}</button>
+                  <button class="btn btn-danger btn-sm" onclick="deleteTestimonial(${t.id})">Delete</button>
+                </div></td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="tab-tadd" class="tab-panel">
+      <div class="form-panel">
+        <h3 style="margin-bottom:20px;">Add Testimonial</h3>
+        <div class="form-row">
+          <div class="field"><label>Full Name *</label><input id="tName" type="text" placeholder="Client name"/></div>
+          <div class="field"><label>Role *</label><input id="tRole" type="text" placeholder="Job title"/></div>
+        </div>
+        <div class="field"><label>Company</label><input id="tCompany" type="text" placeholder="Company name"/></div>
+        <div class="field"><label>Quote *</label><textarea id="tQuote" placeholder="Testimonial text..."></textarea></div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="saveTestimonial()">Save Testimonial</button>
+        </div>
+        <div id="tAlert"></div>
+      </div>
+    </div>`;
+  initTabs();
+}
+
+window.toggleTestimonial = id => {
+  store.testimonials = store.testimonials.map(t=>t.id===id?{...t,active:!t.active}:t);
+  saveStore(store);
+  renderTestimonials();
+};
+window.deleteTestimonial = id => {
+  if(!confirm('Delete?')) return;
+  store.testimonials = store.testimonials.filter(t=>t.id!==id);
+  saveStore(store);
+  renderTestimonials();
+};
+window.saveTestimonial = () => {
+  const name=$('#tName').value.trim(), quote=$('#tQuote').value.trim();
+  if(!name||!quote){showAlert('tAlert','error','Name and quote are required.');return;}
+  store.testimonials.push({id:Date.now(),name,role:$('#tRole').value,company:$('#tCompany').value,quote,active:true});
+  saveStore(store);
+  showAlert('tAlert','success','Testimonial added!');
+  setTimeout(()=>{renderTestimonials();},900);
+};
+
+/* =============================================
+   CAREERS
+   ============================================= */
+function renderCareers() {
+  store = getStore();
+  $('#pageContent').innerHTML = `
+    <div class="tabs">
+      <div class="tab active" data-tab="clist">Listings</div>
+      <div class="tab" data-tab="cadd">Add Listing</div>
+    </div>
+    <div id="tab-clist" class="tab-panel active">
+      <div class="card">
+        <div class="card-head"><h3>Career Listings (${store.careers.length})</h3></div>
+        <table>
+          <thead><tr><th>Title</th><th>Department</th><th>Location</th><th>Type</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${store.careers.map(c=>`
+              <tr>
+                <td><strong style="color:var(--white);">${c.title}</strong></td>
+                <td>${c.department}</td>
+                <td>${c.location}</td>
+                <td><span class="badge badge-info">${c.type}</span></td>
+                <td><span class="badge ${c.active?'badge-success':'badge-muted'}">${c.active?'Active':'Closed'}</span></td>
+                <td><div class="td-actions">
+                  <button class="btn btn-ghost btn-sm" onclick="toggleCareer(${c.id})">${c.active?'Close':'Open'}</button>
+                  <button class="btn btn-danger btn-sm" onclick="deleteCareer(${c.id})">Delete</button>
+                </div></td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="tab-cadd" class="tab-panel">
+      <div class="form-panel">
+        <h3 style="margin-bottom:20px;">Add Career Listing</h3>
+        <div class="form-row">
+          <div class="field"><label>Job Title *</label><input id="cTitle" type="text" placeholder="e.g. Site Engineer"/></div>
+          <div class="field"><label>Department</label><input id="cDept" type="text" placeholder="e.g. Civil Engineering"/></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Location</label><input id="cLoc" type="text" placeholder="e.g. Lagos"/></div>
+          <div class="field"><label>Employment Type</label>
+            <select id="cType"><option>Full-Time</option><option>Part-Time</option><option>Contract</option><option>Internship</option></select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="saveCareer()">Add Listing</button>
+        </div>
+        <div id="cAlert"></div>
+      </div>
+    </div>`;
+  initTabs();
+}
+
+window.toggleCareer = id => {
+  store.careers = store.careers.map(c=>c.id===id?{...c,active:!c.active}:c);
+  saveStore(store);
+  renderCareers();
+};
+window.deleteCareer = id => {
+  if(!confirm('Delete?')) return;
+  store.careers = store.careers.filter(c=>c.id!==id);
+  saveStore(store);
+  renderCareers();
+};
+window.saveCareer = () => {
+  const title=$('#cTitle').value.trim();
+  if(!title){showAlert('cAlert','error','Job title is required.');return;}
+  store.careers.push({id:Date.now(),title,department:$('#cDept').value,location:$('#cLoc').value,type:$('#cType').value,active:true});
+  saveStore(store);
+  showAlert('cAlert','success','Listing added!');
+  setTimeout(renderCareers,900);
+};
+
+/* =============================================
+   BLOG
+   ============================================= */
+function renderBlog() {
+  store = getStore();
+  $('#pageContent').innerHTML = `
+    <div class="card">
+      <div class="card-head"><h3>Blog Posts (${store.blog.length})</h3>
+        <button class="btn btn-primary btn-sm" onclick="showBlogAdd()">+ New Post</button>
+      </div>
+      <table>
+        <thead><tr><th>Title</th><th>Category</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>
+          ${store.blog.map(b=>`
+            <tr>
+              <td style="max-width:280px;"><strong style="color:var(--white);">${b.title}</strong></td>
+              <td>${b.category}</td>
+              <td>${b.date}</td>
+              <td><span class="badge ${b.status==='Published'?'badge-success':'badge-muted'}">${b.status}</span></td>
+              <td><div class="td-actions">
+                <button class="btn btn-ghost btn-sm" onclick="toggleBlog(${b.id})">${b.status==='Published'?'Unpublish':'Publish'}</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteBlog(${b.id})">Delete</button>
+              </div></td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div id="blogAddPanel" class="form-panel hidden" style="margin-top:24px;">
+      <h3 style="margin-bottom:20px;">New Blog Post</h3>
+      <div class="field"><label>Title *</label><input id="bTitle" type="text" placeholder="Post title"/></div>
+      <div class="form-row">
+        <div class="field"><label>Category</label>
+          <select id="bCat"><option>Infrastructure</option><option>Oil & Gas</option><option>HSE</option><option>Civil Engineering</option><option>Company News</option></select>
+        </div>
+        <div class="field"><label>Status</label>
+          <select id="bStatus"><option>Draft</option><option>Published</option></select>
+        </div>
+      </div>
+      <div class="field"><label>Content / Summary</label><textarea id="bContent" style="min-height:180px;" placeholder="Blog post content..."></textarea></div>
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="saveBlog()">Save Post</button>
+        <button class="btn btn-ghost" onclick="$('#blogAddPanel').classList.add('hidden')">Cancel</button>
+      </div>
+      <div id="bAlert"></div>
+    </div>`;
+}
+
+window.showBlogAdd = ()=>$('#blogAddPanel').classList.remove('hidden');
+window.toggleBlog = id => {
+  store.blog = store.blog.map(b=>b.id===id?{...b,status:b.status==='Published'?'Draft':'Published'}:b);
+  saveStore(store);
+  renderBlog();
+};
+window.deleteBlog = id => {
+  if(!confirm('Delete?'))return;
+  store.blog = store.blog.filter(b=>b.id!==id);
+  saveStore(store);
+  renderBlog();
+};
+window.saveBlog = () => {
+  const title=$('#bTitle').value.trim();
+  if(!title){showAlert('bAlert','error','Title is required.');return;}
+  store.blog.push({id:Date.now(),title,category:$('#bCat').value,date:new Date().toISOString().split('T')[0],status:$('#bStatus').value,content:$('#bContent').value});
+  saveStore(store);
+  showAlert('bAlert','success','Post saved!');
+  setTimeout(renderBlog,900);
+};
+
+/* =============================================
+   SETTINGS
+   ============================================= */
+function renderSettings() {
+  store = getStore();
+  $('#pageContent').innerHTML = `
+    <div class="form-panel">
+      <h3 style="margin-bottom:20px;">Change Password</h3>
+      <div class="field"><label>Current Password *</label><input id="sOldPass" type="password" placeholder="Current password"/></div>
+      <div class="field"><label>New Password *</label><input id="sNewPass" type="password" placeholder="New password (min 8 chars)"/></div>
+      <div class="field"><label>Confirm New Password *</label><input id="sConfPass" type="password" placeholder="Confirm new password"/></div>
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
+      </div>
+      <div id="settingsAlert"></div>
+    </div>
+    <div class="form-panel">
+      <h3 style="margin-bottom:16px;">Data Management</h3>
+      <p style="color:var(--mute);font-size:13.5px;margin-bottom:16px;">Export or reset all admin data stored in your browser.</p>
+      <div style="display:flex;gap:12px;">
+        <button class="btn btn-ghost" onclick="exportData()">Export JSON Backup</button>
+        <button class="btn btn-danger" onclick="resetData()">Reset All Data</button>
+      </div>
+    </div>
+    <div class="form-panel">
+      <h3 style="margin-bottom:12px;">System Information</h3>
+      <div style="display:grid;gap:8px;">
+        ${[
+          ['Platform','Rafayyl Engineering CMS v1.0'],
+          ['Storage','Browser LocalStorage'],
+          ['Projects', store.projects.length + ' entries'],
+          ['Inquiries', store.inquiries.length + ' entries'],
+        ].map(([k,v])=>`
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+            <span style="color:var(--mute);">${k}</span>
+            <span style="color:var(--white);font-weight:500;">${v}</span>
+          </div>`).join('')}
+      </div>
+    </div>`;
+}
+
+window.changePassword = () => {
+  const old=$('#sOldPass').value, nw=$('#sNewPass').value, conf=$('#sConfPass').value;
+  if(old!==store.creds.password){showAlert('settingsAlert','error','Current password incorrect.');return;}
+  if(nw.length<8){showAlert('settingsAlert','error','New password must be at least 8 characters.');return;}
+  if(nw!==conf){showAlert('settingsAlert','error','Passwords do not match.');return;}
+  store.creds.password=nw;
+  saveStore(store);
+  showAlert('settingsAlert','success','Password updated successfully!');
+  ['sOldPass','sNewPass','sConfPass'].forEach(id=>$('#'+id).value='');
+};
+
+window.exportData = () => {
+  const blob = new Blob([JSON.stringify(store,null,2)],{type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href=url; a.download='rafayyl_admin_backup.json'; a.click();
+  URL.revokeObjectURL(url);
+};
+
+window.resetData = () => {
+  if(!confirm('This will delete ALL data. Are you sure?'))return;
+  localStorage.removeItem(STORE_KEY);
+  store = initStore();
+  renderSettings();
+};
+
+/* =============================================
+   TABS HELPER
+   ============================================= */
+function initTabs() {
+  $$('.tab').forEach(tab => {
+    tab.addEventListener('click', () => switchTab('tab-'+tab.dataset.tab));
+  });
+}
+function switchTab(id) {
+  $$('.tab-panel').forEach(p=>p.classList.remove('active'));
+  $$('.tab').forEach(t=>t.classList.remove('active'));
+  const panel=$('#'+id);
+  if(panel){panel.classList.add('active');}
+  const tabName=id.replace('tab-','');
+  $$('.tab[data-tab]').forEach(t=>{if(t.dataset.tab===tabName)t.classList.add('active');});
+}
+
+/* =============================================
+   ALERT HELPER
+   ============================================= */
+function showAlert(id, type, msg) {
+  const el=$('#'+id);
+  if(!el)return;
+  el.className=`alert alert-${type}`;
+  el.textContent=msg;
+  setTimeout(()=>{el.textContent='';el.className='';},3500);
+}
+
+/* Make $ accessible from inline handlers */
+window.$ = $;
+
+})();
+</script>
+</body>
+</html>
