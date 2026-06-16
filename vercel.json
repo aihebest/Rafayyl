@@ -44,14 +44,29 @@
     }
   ],
   "rewrites": [
-    { "source": "/",        "destination": "/index.html" },
-    { "source": "/admin",   "destination": "/admin.html" }
+    { "source": "/",                                               "destination": "/index.html" },
+    { "source": "/admin",                                          "destination": "/admin.html" },
+    { "source": "/services/civil-engineering",                     "destination": "/service-civil-engineering.html" },
+    { "source": "/services/construction-management",               "destination": "/service-construction-management.html" },
+    { "source": "/services/infrastructure-development",            "destination": "/service-infrastructure-development.html" },
+    { "source": "/services/project-consulting",                    "destination": "/service-project-consulting.html" },
+    { "source": "/services/oil-gas-facilities",                    "destination": "/service-oil-gas-facilities.html" },
+    { "source": "/services/procurement-services",                  "destination": "/service-procurement-services.html" },
+    { "source": "/industries/oil-gas",                             "destination": "/industry-oil-gas.html" },
+    { "source": "/industries/public-infrastructure",               "destination": "/industry-public-infrastructure.html" },
+    { "source": "/industries/commercial-real-estate",              "destination": "/industry-commercial-real-estate.html" },
+    { "source": "/industries/industrial-manufacturing",            "destination": "/industry-industrial-manufacturing.html" },
+    { "source": "/industries/power-energy",                        "destination": "/industry-power-energy.html" },
+    { "source": "/industries/hospitality-tourism",                 "destination": "/industry-hospitality-tourism.html" },
+    { "source": "/industries/agriculture-agro-processing",         "destination": "/industry-agriculture-agro-processing.html" },
+    { "source": "/industries/defence-security",                    "destination": "/industry-defence-security.html" }
   ],
   "redirects": [
-    { "source": "/home",    "destination": "/",       "permanent": true },
-    { "source": "/contact", "destination": "/#contact","permanent": false },
-    { "source": "/careers", "destination": "/#careers","permanent": false },
-    { "source": "/services","destination": "/#services","permanent": false },
-    { "source": "/projects","destination": "/#projects","permanent": false }
+    { "source": "/home",       "destination": "/",          "permanent": true },
+    { "source": "/contact",    "destination": "/#contact",  "permanent": false },
+    { "source": "/careers",    "destination": "/#careers",  "permanent": false },
+    { "source": "/services",   "destination": "/#services", "permanent": false },
+    { "source": "/projects",   "destination": "/#projects", "permanent": false },
+    { "source": "/industries", "destination": "/#industries","permanent": false }
   ]
 }

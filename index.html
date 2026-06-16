@@ -792,15 +792,15 @@
   }
   .grid-item:hover .view-badge{opacity:1;transform:translateY(0);}
   /* Visual backdrops */
-  .v1{background:radial-gradient(circle at 30% 30%,rgba(201,168,76,.3),transparent 60%),linear-gradient(135deg,#1E365F,#0A1628);}
+  .v1{background:url("https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=80") center/cover no-repeat;}
   .v1::after{content:"";position:absolute;left:0;right:0;bottom:0;height:60%;background:linear-gradient(180deg,transparent,rgba(10,22,40,.7));}
-  .v2{background:linear-gradient(135deg,#15294A 0%,#0A1628 100%);}
+  .v2{background:url("https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80") center/cover no-repeat;}
   .v2::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 30px,rgba(201,168,76,.07) 30px 31px);}
-  .v3{background:radial-gradient(800px 400px at 70% 20%,rgba(201,168,76,.25),transparent 60%),linear-gradient(180deg,#0F1F36,#050B16);}
-  .v4{background:linear-gradient(160deg,#1E365F 0%,#15294A 60%,#0A1628 100%);}
+  .v3{background:url("https://images.unsplash.com/photo-1545193544-312983719627?w=900&q=80") center/cover no-repeat;}
+  .v4{background:url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80") center/cover no-repeat;}
   .v4::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 50px,rgba(255,255,255,.04) 50px 51px);}
-  .v5{background:radial-gradient(circle at 70% 70%,rgba(201,168,76,.2),transparent 55%),linear-gradient(135deg,#0A1628,#15294A);}
-  .v6{background:linear-gradient(120deg,#0F1F36 0%,#1E365F 100%);}
+  .v5{background:url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&q=80") center/cover no-repeat;}
+  .v6{background:url("https://images.unsplash.com/photo-1567789884554-0b2b069c1463?w=900&q=80") center/cover no-repeat;}
   .v6::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.08) 1px,transparent 1px);background-size:40px 40px;}
   .visual::after{
     content:"";position:absolute;left:0;right:0;bottom:0;height:50%;
@@ -1978,7 +1978,21 @@
     }
   }
 
-</style>
+
+  /* ── Real news thumbnails ── */
+  .news-thumb .visual.news-v1 { background: url('https://images.unsplash.com/photo-1590496793929-36417d3117de?w=800&q=80') center/cover no-repeat; }
+  .news-thumb .visual.news-v2 { background: url('https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=800&q=80') center/cover no-repeat; }
+  .news-thumb .visual.news-v3 { background: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80') center/cover no-repeat; }
+
+  
+  /* Service card as link */
+  a.service-card { display:block; color:inherit; text-decoration:none; }
+
+  
+  /* Industry card as link */
+  a.industry-card { display:block; color:inherit; text-decoration:none; }
+
+  </style>
 </head>
 <body>
 
@@ -2010,10 +2024,6 @@
     <a class="nav-link" href="#careers" role="menuitem">Careers</a>
     <a class="nav-link" href="#contact" role="menuitem">Contact</a>
   </div>
-  <a href="#contact" class="nav-cta" aria-label="Get a project quote">
-    Get a Quote
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-  </a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
     <span></span><span></span><span></span>
   </button>
@@ -2058,10 +2068,6 @@
       Rafayyl Engineering and Construction Limited delivers world-class civil engineering, infrastructure development, and oil &amp; gas facility services across Nigeria — with the precision, integrity, and craftsmanship the future demands.
     </p>
     <div class="hero-actions">
-      <a href="#contact" class="btn btn-primary">
-        Get a Quote
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
       <a href="#projects" class="btn btn-ghost">
         View Projects
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
@@ -2228,7 +2234,7 @@
       <p class="section-sub">Six specialized practice areas, one integrated team — from concept and design through procurement, construction, and operations support.</p>
     </div>
     <div class="services-grid reveal-stagger">
-      <article class="service-card" tabindex="0" data-modal="civil" aria-label="Civil Engineering service">
+      <a class="service-card" href="service-civil-engineering.html" aria-label="Civil Engineering service">
         <span class="num" aria-hidden="true">01</span>
         <div class="ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22h20"/><path d="M3 22V8l9-6 9 6v14"/><path d="M9 22V12h6v10"/><path d="M9 6h6"/></svg>
@@ -2236,8 +2242,8 @@
         <h3>Civil Engineering</h3>
         <p>Structural design, geotechnical analysis, and turnkey civil works for commercial, industrial, and public sector developments.</p>
 
-      </article>
-      <article class="service-card" tabindex="0" aria-label="Construction Management service">
+      </a>
+      <a class="service-card" href="service-construction-management.html" aria-label="Construction Management service">
         <span class="num" aria-hidden="true">02</span>
         <div class="ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M9 14h6"/><path d="M9 17h3"/></svg>
@@ -2246,7 +2252,7 @@
         <p>End-to-end coordination of contractors, schedules, costs, safety, and quality across complex multi-trade construction programs.</p>
 
       </article>
-      <article class="service-card" tabindex="0" aria-label="Infrastructure Development service">
+      <a class="service-card" href="service-infrastructure-development.html" aria-label="Infrastructure Development service">
         <span class="num" aria-hidden="true">03</span>
         <div class="ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8"/><path d="M19 20V8"/><path d="M5 8 2 4h20l-3 4"/><path d="M9 20v-6h6v6"/></svg>
@@ -2255,7 +2261,7 @@
         <p>Roads, bridges, drainage, water and power infrastructure — engineered for resilience and built to international benchmarks.</p>
 
       </article>
-      <article class="service-card" tabindex="0" aria-label="Project Consulting service">
+      <a class="service-card" href="service-project-consulting.html" aria-label="Project Consulting service">
         <span class="num" aria-hidden="true">04</span>
         <div class="ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="4" y="9" width="16" height="12" rx="2"/><path d="M12 14v3"/></svg>
@@ -2264,7 +2270,7 @@
         <p>Feasibility, planning, risk management, and technical advisory — independent expertise to de-risk decisions at every stage.</p>
 
       </article>
-      <article class="service-card" tabindex="0" aria-label="Oil and Gas Facilities service">
+      <a class="service-card" href="service-oil-gas-facilities.html" aria-label="Oil Gas Facilities service">
         <span class="num" aria-hidden="true">05</span>
         <div class="ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 21V9"/><path d="m6 9 6-7 6 7"/><path d="M5 13h14"/><circle cx="12" cy="15.5" r="1.5"/></svg>
@@ -2273,7 +2279,7 @@
         <p>Pipeline engineering, terminal construction, mechanical installations, and maintenance for upstream and midstream operations.</p>
 
       </article>
-      <article class="service-card" tabindex="0" aria-label="Procurement service">
+      <a class="service-card" href="service-procurement-services.html" aria-label="Procurement Services service">
         <span class="num" aria-hidden="true">06</span>
         <div class="ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8-3 3-3-3 3 8z"/><path d="M11 18H5a2 2 0 0 1-2-2V7"/><path d="M21 16v3a2 2 0 0 1-2 2h-3"/><circle cx="6" cy="6" r="2"/></svg>
@@ -2297,59 +2303,59 @@
       <p class="section-sub">From upstream oil fields to urban infrastructure, our engineers operate across Nigeria's most strategic industries.</p>
     </div>
     <div class="industries-grid reveal-stagger">
-      <div class="industry-card">
+      <a class="industry-card" href="industry-oil-gas.html">
         <div class="icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 21V9"/><path d="m6 9 6-7 6 7"/><path d="M5 13h14"/></svg>
-        </div>
+        </a>
         <h4>Oil &amp; Gas</h4>
         <p>Upstream, midstream, and downstream facilities across the Niger Delta and beyond.</p>
       </div>
-      <div class="industry-card">
+      <a class="industry-card" href="industry-public-infrastructure.html">
         <div class="icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8"/><path d="M19 20V8"/><path d="M5 8 2 4h20l-3 4"/></svg>
-        </div>
+        </a>
         <h4>Public Infrastructure</h4>
         <p>Roads, bridges, drainage systems, and public facilities funded by government programs.</p>
       </div>
-      <div class="industry-card">
+      <a class="industry-card" href="industry-commercial-real-estate.html">
         <div class="icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><rect x="9" y="13" width="6" height="8"/></svg>
-        </div>
+        </a>
         <h4>Commercial Real Estate</h4>
         <p>Office towers, retail centres, mixed-use developments, and premium residential builds.</p>
       </div>
-      <div class="industry-card">
+      <a class="industry-card" href="industry-industrial-manufacturing.html">
         <div class="icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
-        </div>
+        </a>
         <h4>Industrial &amp; Manufacturing</h4>
         <p>Factory builds, plant expansions, and process facility design for heavy industry.</p>
       </div>
-      <div class="industry-card">
+      <a class="industry-card" href="industry-power-energy.html">
         <div class="icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        </div>
+        </a>
         <h4>Power &amp; Energy</h4>
         <p>Substations, transmission lines, solar farms, and power plant civil works.</p>
       </div>
-      <div class="industry-card">
+      <a class="industry-card" href="industry-hospitality-tourism.html">
         <div class="icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 1 0 20A10 10 0 0 1 12 2z"/><path d="M12 6v6l4 2"/></svg>
-        </div>
+        </a>
         <h4>Hospitality &amp; Tourism</h4>
         <p>Hotels, resorts, event venues, and hospitality infrastructure across Nigeria.</p>
       </div>
-      <div class="industry-card">
+      <a class="industry-card" href="industry-agriculture-agro-processing.html">
         <div class="icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M3 9V7a2 2 0 0 1 2-2h2"/><path d="M14 5h2a2 2 0 0 1 2 2v2"/></svg>
-        </div>
+        </a>
         <h4>Agriculture &amp; Agro-processing</h4>
         <p>Farm infrastructure, storage facilities, food processing plants, and irrigation systems.</p>
       </div>
-      <div class="industry-card">
+      <a class="industry-card" href="industry-defence-security.html">
         <div class="icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
+        </a>
         <h4>Defence &amp; Security</h4>
         <p>Military bases, secure facilities, and specialized government construction projects.</p>
       </div>
@@ -2920,7 +2926,7 @@
     <div class="news-grid reveal-stagger">
       <article class="news-card" tabindex="0">
         <div class="news-thumb">
-          <div class="visual v1"></div>
+          <div class="visual news-v1"></div>
           <span class="cat-badge">Infrastructure</span>
         </div>
         <div class="news-body">
@@ -2935,7 +2941,7 @@
       </article>
       <article class="news-card" tabindex="0">
         <div class="news-thumb">
-          <div class="visual v3"></div>
+          <div class="visual news-v2"></div>
           <span class="cat-badge">Oil &amp; Gas</span>
         </div>
         <div class="news-body">
@@ -2950,7 +2956,7 @@
       </article>
       <article class="news-card" tabindex="0">
         <div class="news-thumb">
-          <div class="visual v5"></div>
+          <div class="visual news-v3"></div>
           <span class="cat-badge">HSE</span>
         </div>
         <div class="news-body">

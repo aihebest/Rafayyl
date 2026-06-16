@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Oil & Gas | Rafayyl Engineering and Construction Limited</title>
+  <meta name="description" content="Rafayyl Engineering delivers specialised civil, mechanical, and EPC services to upstream, midstream, and downstream oil and gas operators across Nigeria's "/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --navy-900:#050B16;--navy-800:#0A1628;--navy-700:#0F1F36;
+      --navy-600:#15294A;--navy-500:#1E365F;
+      --gold:#E6CB80;--gold-mid:#D4B764;--gold-rich:#C9A84C;
+      --text:#E8EDF5;--mute:rgba(232,237,245,.6);
+      --ease-out:cubic-bezier(.16,1,.3,1);
+    }
+    html{scroll-behavior:smooth;}
+    body{background:var(--navy-900);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,11,22,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,.12);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:72px;}
+    .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;}
+    .nav-brand img{width:44px;height:44px;border-radius:8px;object-fit:contain;}
+    .brand-text .name{font-size:18px;font-weight:600;letter-spacing:.06em;color:#fff;}
+    .brand-text .name span{color:#38B6E8;}
+    .brand-text .sub{font-size:10px;letter-spacing:.18em;color:var(--mute);margin-top:1px;}
+    .nav-links{display:flex;gap:32px;list-style:none;}
+    .nav-links a{color:var(--mute);text-decoration:none;font-size:14px;font-weight:500;letter-spacing:.03em;transition:color .2s;}
+    .nav-links a:hover{color:var(--gold);}
+    .nav-back{display:inline-flex;align-items:center;gap:6px;color:var(--gold);text-decoration:none;font-size:13px;font-weight:500;border:1px solid rgba(201,168,76,.3);padding:6px 16px;border-radius:20px;transition:all .2s;}
+    .nav-back:hover{background:rgba(201,168,76,.1);}
+    .nav-back svg{width:14px;height:14px;}
+    .svc-hero{position:relative;min-height:60vh;display:flex;align-items:flex-end;padding:120px 0 80px;overflow:hidden;}
+    .svc-hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1545193544-312983719627?w=1400&q=85') center/cover no-repeat;}
+    .svc-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,11,22,.5) 0%,rgba(5,11,22,.88) 100%);}
+    .container{max-width:1200px;margin:0 auto;padding:0 40px;position:relative;}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);color:var(--gold);font-size:11px;font-weight:600;letter-spacing:.14em;padding:6px 16px;border-radius:20px;margin-bottom:20px;text-transform:uppercase;}
+    .svc-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:700;line-height:1.12;margin-bottom:16px;}
+    .svc-hero .sub{font-size:1.15rem;color:var(--mute);max-width:620px;}
+    .stats-bar{background:var(--navy-700);border-top:1px solid rgba(201,168,76,.15);border-bottom:1px solid rgba(201,168,76,.15);}
+    .stats-inner{display:grid;grid-template-columns:repeat(4,1fr);}
+    .stat-item{padding:28px 32px;text-align:center;border-right:1px solid rgba(255,255,255,.06);}
+    .stat-item:last-child{border-right:none;}
+    .stat-num{display:block;font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold);line-height:1.1;}
+    .stat-lbl{font-size:12px;color:var(--mute);letter-spacing:.06em;margin-top:4px;display:block;}
+    .section{padding:80px 0;}
+    .eyebrow{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+    .eyebrow::before,.eyebrow::after{content:'— ';}
+    h2.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;line-height:1.2;margin-bottom:16px;}
+    .sec-sub{font-size:1.05rem;color:var(--mute);max-width:640px;}
+    .two-col{display:grid;grid-template-columns:1.2fr 0.8fr;gap:64px;align-items:start;}
+    .about-text p{color:var(--mute);margin-bottom:20px;line-height:1.8;}
+    .about-text p:last-child{margin-bottom:0;}
+    .fact-table{background:var(--navy-700);border:1px solid rgba(201,168,76,.12);border-radius:12px;overflow:hidden;}
+    .fact-row{display:flex;border-bottom:1px solid rgba(255,255,255,.06);padding:14px 20px;gap:16px;}
+    .fact-row:last-child{border-bottom:none;}
+    .fact-key{font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--gold);min-width:140px;}
+    .fact-val{font-size:14px;color:var(--mute);}
+    .capabilities{background:var(--navy-800);}
+    .services-list{margin-top:40px;columns:2;column-gap:40px;}
+    .services-list li{color:var(--mute);margin-bottom:14px;padding-left:20px;position:relative;font-size:15px;break-inside:avoid;}
+    .services-list li::before{content:'›';position:absolute;left:0;color:var(--gold-rich);font-weight:700;}
+    .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:48px;}
+    .gal-item{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3;}
+    .gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease-out);display:block;}
+    .gal-item:hover img{transform:scale(1.05);}
+    .gal-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,transparent,rgba(5,11,22,.85));padding:24px 16px 14px;font-size:13px;color:rgba(232,237,245,.8);}
+    .cta-section{background:linear-gradient(135deg,var(--navy-600),var(--navy-700));border-top:1px solid rgba(201,168,76,.2);text-align:center;padding:80px 0;}
+    .cta-section h2{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;margin-bottom:16px;}
+    .cta-section p{color:var(--mute);margin-bottom:40px;font-size:1.05rem;}
+    .btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;letter-spacing:.04em;padding:14px 28px;border-radius:6px;text-decoration:none;transition:all .3s var(--ease-out);}
+    .btn-gold{background:var(--gold-rich);color:var(--navy-900);}
+    .btn-gold:hover{background:var(--gold);transform:translateY(-2px);}
+    .btn-ghost{background:transparent;color:var(--text);border:1px solid rgba(232,237,245,.25);margin-left:16px;}
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+    .btn svg{width:14px;height:14px;}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+    .related-card{padding:28px;background:var(--navy-700);border:1px solid rgba(201,168,76,.12);border-radius:12px;text-decoration:none;color:inherit;transition:border-color .3s,transform .3s;display:block;}
+    .related-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-4px);}
+    .related-card h4{font-size:1rem;font-weight:600;margin-bottom:8px;color:var(--gold);}
+    .related-card p{font-size:13px;color:var(--mute);}
+    footer{background:var(--navy-900);border-top:1px solid rgba(255,255,255,.06);padding:40px;text-align:center;}
+    footer p{font-size:13px;color:var(--mute);}
+    footer a{color:var(--gold);text-decoration:none;}
+    @media(max-width:900px){
+      nav{padding:0 20px;}
+      .nav-links{display:none;}
+      .container{padding:0 24px;}
+      .two-col,.gallery-grid,.related-grid{grid-template-columns:1fr;}
+      .stats-inner{grid-template-columns:repeat(2,1fr);}
+      .stat-item:nth-child(2){border-right:none;}
+      .services-list{columns:1;}
+    }
+    @media(max-width:480px){.stats-inner{grid-template-columns:1fr;}.stat-item{border-right:none!important;}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">
+    <img src="data:image/png;base64,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" alt="Rafayyl Engineering logo"/>
+    <div class="brand-text">
+      <div class="name"><span>RAFAYYL</span></div>
+      <div class="sub">ENGINEERING · EST. 2024</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#news">Insights</a></li>
+    <li><a href="index.html#careers">Careers</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a class="nav-back" href="index.html#industries">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    All Industries
+  </a>
+</nav>
+
+<section class="svc-hero">
+  <div class="svc-hero-bg"></div>
+  <div class="container">
+    <div class="hero-eyebrow">Industries We Serve</div>
+    <h1>Oil & Gas</h1>
+    <p class="sub">Engineering the energy that powers Nigeria.</p>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      
+          <div class="stat-item">
+            <span class="stat-num">₦3.4B</span>
+            <span class="stat-lbl">O&G Works Delivered</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">1</span>
+            <span class="stat-lbl">Major EPC Contract</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">NUPRC</span>
+            <span class="stat-lbl">Regulatory Compliant</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">0</span>
+            <span class="stat-lbl">HSE Incidents</span>
+          </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div class="about-text">
+        <span class="eyebrow">Our Role in This Sector</span>
+        <h2 class="sec-title">Oil & Gas in Nigeria</h2>
+        <p>Nigeria sits on one of Africa's largest proven oil and gas reserves — over 36 billion barrels of crude and 200 trillion cubic feet of natural gas. The sector contributes approximately 8% of GDP and over 50% of government revenues, making it the engine of the national economy.</p><p>Rafayyl Engineering entered the oil and gas sector at inception, drawing on the operational experience of founders who spent careers working with international operators across the Niger Delta. We understand the unique challenges of engineering in this environment: difficult terrain, regulatory complexity, community engagement requirements, and the uncompromising safety standards demanded by operators and their international partners.</p><p>Our O&G capabilities span terminal construction and upgrade, pipeline engineering, mechanical installations, instrumentation, and ongoing maintenance. We hold all necessary regulatory approvals to operate on Oil Mining Leases (OMLs) and Oil Prospecting Licences (OPLs) across Nigeria, and our HSE management system is aligned with international operator requirements including SPDC, TOTAL, and NAOC golden rules.</p>
+      </div>
+      <div>
+        <span class="eyebrow">Key Facts</span>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;margin-bottom:20px;">Sector at a glance</h3>
+        <div class="fact-table">
+          
+          <div class="fact-row">
+            <span class="fact-key">Operators Served</span>
+            <span class="fact-val">Experience with SPDC, TOTAL, AGIP/NAOC frameworks</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-key">Sectors</span>
+            <span class="fact-val">Upstream, midstream, and downstream facilities</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-key">Key Regulation</span>
+            <span class="fact-val">DPR / NUPRC, SPDC HSSE Standards, ISO 14001</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-key">Specialisation</span>
+            <span class="fact-val">EPC terminal upgrades, pipelines, tank farms</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section capabilities">
+  <div class="container">
+    <span class="eyebrow">What We Deliver</span>
+    <h2 class="sec-title">Services for the oil & gas sector</h2>
+    <p class="sec-sub">A focused scope of services matched to the specific needs of oil & gas clients in Nigeria.</p>
+    <ul class="services-list">
+      <li>Pipeline engineering and installation (onshore)</li><li>Crude and product terminal construction</li><li>Tank farm design and construction (API 650)</li><li>Mechanical installations: pumps, compressors, heat exchangers</li><li>Metering systems and fiscal stations</li><li>HSE and fire & gas detection systems</li><li>HAZOP facilitation and safety case preparation</li><li>Plant maintenance and integrity management</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Photo Gallery</span>
+    <h2 class="sec-title">Work from the field</h2>
+    <p class="sec-sub">Real images from Rafayyl Engineering's projects in the oil & gas sector.</p>
+    <div class="gallery-grid">
+      
+          <div class="gal-item">
+            <img src="https://images.unsplash.com/photo-1545193544-312983719627?w=800&q=80" alt="Industrial refinery facility" loading="lazy" />
+            <div class="gal-caption">Industrial refinery facility</div>
+          </div>
+          <div class="gal-item">
+            <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=800&q=80" alt="Offshore oil platform" loading="lazy" />
+            <div class="gal-caption">Offshore oil platform</div>
+          </div>
+          <div class="gal-item">
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80" alt="Refinery night operations" loading="lazy" />
+            <div class="gal-caption">Refinery night operations</div>
+          </div>
+          <div class="gal-item">
+            <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80" alt="HSE-compliant operations" loading="lazy" />
+            <div class="gal-caption">HSE-compliant operations</div>
+          </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--navy-800);padding-top:60px;padding-bottom:60px;">
+  <div class="container">
+    <span class="eyebrow">Explore More</span>
+    <h2 class="sec-title">Related industries</h2>
+    <div class="related-grid">
+      <a class="related-card" href="industry-oil-gas.html">
+        <h4>Oil &amp; Gas</h4>
+        <p>Upstream, midstream, and downstream facility engineering.</p>
+      </a>
+      <a class="related-card" href="industry-public-infrastructure.html">
+        <h4>Public Infrastructure</h4>
+        <p>Roads, bridges, water works, and public buildings.</p>
+      </a>
+      <a class="related-card" href="industry-commercial-real-estate.html">
+        <h4>Commercial Real Estate</h4>
+        <p>Office towers, retail centres, and mixed-use developments.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Have a project in this sector?</h2>
+    <p>Speak with our oil & gas specialists — confidential, no obligation.</p>
+    <a class="btn btn-gold" href="index.html#contact">
+      Contact Us
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+    <a class="btn btn-ghost" href="index.html#industries">View All Industries</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2024 Rafayyl Engineering and Construction Limited · CAC RC 7451347 · Lagos, Nigeria · <a href="index.html">Home</a></p>
+</footer>
+
+</body>
+</html>
