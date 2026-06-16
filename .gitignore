@@ -34,3 +34,6 @@ npm-debug.log*
 
 # Claude session files
 .claude/
+
+.vercel
+.env*
